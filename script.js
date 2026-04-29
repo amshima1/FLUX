@@ -1,60 +1,99 @@
-// PRODUCTS DATABASE
 const products = [
-  {id:1, name:"Elegant Dress", price:120, category:"dress", img:"https://via.placeholder.com/300"},
-  {id:2, name:"Luxury Kaftan", price:150, category:"kaftan", img:"https://via.placeholder.com/300"},
-  {id:3, name:"Silk Gown", price:200, category:"luxury", img:"https://via.placeholder.com/300"},
-  {id:4, name:"Royal Dress", price:180, category:"dress", img:"https://via.placeholder.com/300"}
+  {
+    id:1,
+    name:"Elegant Red Dress",
+    price:120,
+    category:"dress",
+    type:"image",
+    img:"https://images.unsplash.com/photo-1520975922284-9c3b7f2f6c2a?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    id:2,
+    name:"Luxury Kaftan Video",
+    price:150,
+    category:"kaftan",
+    type:"video",
+    video:"https://cdn.pixabay.com/video/2023/03/27/157114-812445321_large.mp4"
+  },
+  {
+    id:3,
+    name:"Silk Evening Gown",
+    price:200,
+    category:"luxury",
+    type:"image",
+    img:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    id:4,
+    name:"Runway Fashion Video",
+    price:180,
+    category:"luxury",
+    type:"video",
+    video:"https://cdn.pixabay.com/video/2022/10/26/136065-764462223_large.mp4"
+  }
 ];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// DISPLAY PRODUCTS
+/* DISPLAY PRODUCTS */
 function displayProducts(list){
-  let container = document.getElementById("product-list");
-  container.innerHTML = "";
+  let box = document.getElementById("product-list");
+  box.innerHTML = "";
 
   list.forEach(p=>{
-    container.innerHTML += `
+    let media = "";
+
+    if(p.type === "video"){
+      media = `<video autoplay muted loop playsinline>
+                <source src="${p.video}" type="video/mp4">
+               </video>`;
+    } else {
+      media = `<img src="${p.img}">`;
+    }
+
+    box.innerHTML += `
       <div class="card">
-        <img src="${p.img}">
+        ${media}
         <h3>${p.name}</h3>
         <p>$${p.price}</p>
-        <button onclick="addToCart(${p.id})">Add to Cart</button>
+        <button onclick="addToCart(${p.id})">Add</button>
       </div>
     `;
   });
 }
 displayProducts(products);
 
-// ADD TO CART
+/* CART */
 function addToCart(id){
   let item = products.find(p=>p.id===id);
   cart.push(item);
   localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
+  updateCart();
 }
 
-// CART COUNT
-function updateCartCount(){
+function updateCart(){
   document.getElementById("cart-count").innerText = cart.length;
 }
-updateCartCount();
+updateCart();
 
-// FILTER
+/* FILTER */
 function filterProducts(cat){
   if(cat==="all") return displayProducts(products);
-  let filtered = products.filter(p=>p.category===cat);
-  displayProducts(filtered);
+  displayProducts(products.filter(p=>p.category===cat));
 }
 
-// SEARCH
+/* SEARCH */
 document.getElementById("search").addEventListener("input", function(){
-  let value = this.value.toLowerCase();
-  let filtered = products.filter(p=>p.name.toLowerCase().includes(value));
-  displayProducts(filtered);
+  let v = this.value.toLowerCase();
+  displayProducts(products.filter(p=>p.name.toLowerCase().includes(v)));
 });
 
-// CART MODAL
+/* MENU */
+function toggleMenu(){
+  document.getElementById("nav-menu").classList.toggle("active");
+}
+
+/* CART UI */
 function openCart(){
   document.getElementById("cart-modal").style.display="block";
   renderCart();
@@ -66,9 +105,8 @@ function closeCart(){
 
 function renderCart(){
   let box = document.getElementById("cart-items");
-  box.innerHTML = "";
-
   let total = 0;
+  box.innerHTML = "";
 
   cart.forEach((item,i)=>{
     total += item.price;
@@ -81,28 +119,27 @@ function renderCart(){
   document.getElementById("total").innerText = "Total: $" + total;
 }
 
-// REMOVE ITEM
-function removeItem(index){
-  cart.splice(index,1);
+function removeItem(i){
+  cart.splice(i,1);
   localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
+  updateCart();
   renderCart();
 }
 
-// CHECKOUT
+/* CHECKOUT */
 function checkout(){
-  document.getElementById("checkout").style.display="block";
+  document.getElementById("checkout-modal").style.display="block";
 }
 
 function closeCheckout(){
-  document.getElementById("checkout").style.display="none";
+  document.getElementById("checkout-modal").style.display="none";
 }
 
 function placeOrder(){
   alert("Order placed successfully!");
   cart = [];
-  localStorage.removeItem("cart");
-  updateCartCount();
-  closeCheckout();
+  localStorage.clear();
+  updateCart();
   closeCart();
+  closeCheckout();
 }
