@@ -1,288 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FLUX Fashion House - Phase 2</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
-body{
-background:#f4f4f4;
-}
-
-/* HEADER */
-header{
-background:#0d0d0d;
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-flex-wrap:wrap;
-}
-
-header h1{
-color:#ff3c78;
-}
-
-nav a{
-color:white;
-margin:0 10px;
-text-decoration:none;
-}
-
-/* SEARCH */
-.search{
-padding:15px;
-text-align:center;
-}
-
-.search input{
-padding:10px;
-width:60%;
-max-width:400px;
-border:1px solid #ccc;
-border-radius:5px;
-}
-
-/* FILTER */
-.filters{
-text-align:center;
-margin:10px;
-}
-
-.filters button{
-padding:8px 12px;
-margin:5px;
-border:none;
-cursor:pointer;
-background:#0d0d0d;
-color:white;
-border-radius:5px;
-}
-
-.filters button:hover{
-background:#ff3c78;
-}
-
-/* PRODUCTS */
-.container{
-padding:20px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
-
-.card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 2px 8px rgba(0,0,0,0.15);
-text-align:center;
-}
-
-.card img{
-width:100%;
-height:200px;
-object-fit:cover;
-}
-
-.card button{
-background:#0d0d0d;
-color:white;
-padding:10px;
-width:100%;
-border:none;
-cursor:pointer;
-}
-
-.card button:hover{
-background:#ff3c78;
-}
-
-/* CART */
-.cart{
-position:fixed;
-right:10px;
-top:80px;
-background:white;
-width:280px;
-padding:15px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-border-radius:10px;
-}
-
-.item{
-display:flex;
-justify-content:space-between;
-font-size:13px;
-margin:5px 0;
-}
-
-.item button{
-background:red;
-color:white;
-border:none;
-padding:2px 5px;
-cursor:pointer;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:15px;
-background:#0d0d0d;
-color:white;
-margin-top:20px;
-}
-
-@media(max-width:768px){
-.cart{
-position:static;
-width:100%;
-margin-top:20px;
-}
-}
-</style>
+  <meta charset="UTF-8">
+  <title>FLUX Fashion Store</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-<h1>FLUX</h1>
-<nav>
-<a href="#">Home</a>
-<a href="#shop">Shop</a>
-</nav>
+  <div class="logo">FLUX</div>
+
+  <input type="text" id="search" placeholder="Search fashion...">
+
+  <nav>
+    <button onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('dress')">Dresses</button>
+    <button onclick="filterProducts('kaftan')">Kaftan</button>
+    <button onclick="filterProducts('luxury')">Luxury</button>
+  </nav>
+
+  <div class="cart" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
 </header>
 
-<!-- SEARCH -->
-<div class="search">
-<input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="Search products...">
-</div>
-
-<!-- FILTER -->
-<div class="filters">
-<button onclick="filter('all')">All</button>
-<button onclick="filter('jacket')">Jackets</button>
-<button onclick="filter('shirt')">Shirts</button>
-<button onclick="filter('hoodie')">Hoodies</button>
-</div>
+<!-- HERO -->
+<section class="hero">
+  <h1>Luxury African Fashion</h1>
+  <p>Premium styles crafted for elegance</p>
+</section>
 
 <!-- PRODUCTS -->
-<div class="container">
-<div class="products" id="productBox">
+<section class="products" id="product-list"></section>
 
-<div class="card" data-name="flux jacket" data-category="jacket">
-<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
-<h3>FLUX Jacket</h3>
-<p>₦30,000</p>
-<button onclick="addCart('FLUX Jacket',30000)">Add</button>
+<!-- CART MODAL -->
+<div id="cart-modal" class="modal">
+  <div class="modal-content">
+    <span onclick="closeCart()" class="close">&times;</span>
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="total"></h3>
+    <button onclick="checkout()">Checkout</button>
+  </div>
 </div>
 
-<div class="card" data-name="urban shirt" data-category="shirt">
-<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b">
-<h3>Urban Shirt</h3>
-<p>₦12,000</p>
-<button onclick="addCart('Urban Shirt',12000)">Add</button>
+<!-- CHECKOUT -->
+<div id="checkout" class="modal">
+  <div class="modal-content">
+    <span onclick="closeCheckout()" class="close">&times;</span>
+    <h2>Checkout</h2>
+    <input placeholder="Name">
+    <input placeholder="Address">
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
 </div>
 
-<div class="card" data-name="flux hoodie" data-category="hoodie">
-<img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd49">
-<h3>FLUX Hoodie</h3>
-<p>₦20,000</p>
-<button onclick="addCart('FLUX Hoodie',20000)">Add</button>
-</div>
-
-</div>
-</div>
-
-<!-- CART -->
-<div class="cart">
-<h3>Cart</h3>
-<div id="cartList"></div>
-<h4>Total: ₦<span id="total">0</span></h4>
-</div>
-
-<script>
-
-let cart = [];
-
-// ADD TO CART
-function addCart(name, price){
-cart.push({name, price});
-renderCart();
-}
-
-// REMOVE ITEM
-function removeItem(index){
-cart.splice(index,1);
-renderCart();
-}
-
-// DISPLAY CART
-function renderCart(){
-let list = document.getElementById("cartList");
-let total = 0;
-list.innerHTML = "";
-
-cart.forEach((item,index)=>{
-total += item.price;
-
-list.innerHTML += `
-<div class="item">
-<span>${item.name}</span>
-<span>₦${item.price}</span>
-<button onclick="removeItem(${index})">X</button>
-</div>
-`;
-});
-
-document.getElementById("total").innerText = total;
-}
-
-// SEARCH
-function searchProduct(){
-let input = document.getElementById("searchInput").value.toLowerCase();
-let cards = document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-let name = card.getAttribute("data-name");
-
-if(name.includes(input)){
-card.style.display="block";
-}else{
-card.style.display="none";
-}
-});
-}
-
-// FILTER
-function filter(category){
-let cards = document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-let cat = card.getAttribute("data-category");
-
-if(category === "all" || cat === category){
-card.style.display="block";
-}else{
-card.style.display="none";
-}
-});
-}
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
