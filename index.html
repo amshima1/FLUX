@@ -2,29 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FLUX Fashion Store</title>
+<title>FLUX PRO MAX</title>
 <link rel="stylesheet" href="style.css">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
 
 <header>
-  <div class="logo">FLUX</div>
+  <div class="logo">FLUX PRO MAX</div>
 
   <div class="hamburger" onclick="toggleMenu()">
     <i class="fa fa-bars"></i>
   </div>
 
   <nav id="nav-menu">
-    <button onclick="filterProducts('all')">All</button>
-    <button onclick="filterProducts('dress')">Dresses</button>
-    <button onclick="filterProducts('kaftan')">Kaftan</button>
-    <button onclick="filterProducts('luxury')">Luxury</button>
+    <button onclick="filter('all')">All</button>
+    <button onclick="filter('dress')">Dresses</button>
+    <button onclick="filter('luxury')">Luxury</button>
+    <button onclick="openAdmin()">Admin</button>
   </nav>
 
-  <input type="text" id="search" placeholder="Search fashion...">
+  <input id="search" placeholder="Search...">
 
   <div class="cart" onclick="openCart()">
     🛒 <span id="cart-count">0</span>
@@ -33,57 +32,44 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <h1>Luxury Fashion Store</h1>
-    <p>Premium African & Modern Designer Wear</p>
-    <button onclick="filterProducts('all')">Shop Now</button>
-  </div>
+  <h1>FLUX LUXURY FASHION</h1>
+  <p>Bold. Clean. Premium.</p>
 </section>
 
 <!-- PRODUCTS -->
-<section class="products" id="product-list"></section>
+<section id="product-list" class="products"></section>
+
+<!-- PRODUCT VIEW -->
+<div id="product-modal" class="modal">
+  <div class="modal-content large">
+    <span onclick="closeProduct()" class="close">&times;</span>
+    <div id="product-view"></div>
+  </div>
+</div>
 
 <!-- CART -->
 <div id="cart-modal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeCart()">&times;</span>
-    <h2>Your Cart</h2>
+    <span onclick="closeCart()" class="close">&times;</span>
+    <h2>Cart</h2>
     <div id="cart-items"></div>
     <h3 id="total"></h3>
-    <button onclick="checkout()">Checkout</button>
   </div>
 </div>
 
-<!-- CHECKOUT -->
-<div id="checkout-modal" class="modal">
+<!-- ADMIN -->
+<div id="admin-modal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeCheckout()">&times;</span>
-    <h2>Checkout</h2>
-    <input placeholder="Full Name">
-    <input placeholder="Address">
-    <input placeholder="Phone Number">
-    <button onclick="placeOrder()">Place Order</button>
+    <span onclick="closeAdmin()" class="close">&times;</span>
+    <h2>Admin Panel</h2>
+
+    <input id="name" placeholder="Product Name">
+    <input id="price" placeholder="Price">
+    <input id="img" placeholder="Image URL">
+
+    <button onclick="addProduct()">Add Product</button>
   </div>
 </div>
-
-<!-- WHATSAPP -->
-<a href="https://wa.me/234XXXXXXXXXX" class="whatsapp" target="_blank">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<!-- FOOTER -->
-<footer>
-  <h3>FLUX Fashion Store</h3>
-
-  <div class="socials">
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-    <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-  </div>
-
-  <p>© 2026 FLUX. All Rights Reserved.</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
