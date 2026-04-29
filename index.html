@@ -157,7 +157,7 @@ let wishlist = [];
 let recentlyViewed = [];
 let currentFilter = 'all';
 
-function renderProducts(filter, search='') {
+function renderProducts<img src="${p.image}" class="w-full h-full object-cover" />{
   const grid = document.getElementById('product-grid');
   let filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
   if (search) filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
