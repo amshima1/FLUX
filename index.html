@@ -1,58 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="h-full">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLUX Fashion House</title>
-
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Icons -->
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUX Fashion House | International</title>
+    
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        flux: { black: '#0B0B0B', gold: '#C9A96E', cream: '#F5F0EB' },
+                    },
+                    fontFamily: {
+                        display: ['Bebas Neue', 'sans-serif'],
+                        body: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="h-full">
+    <div id="app" class="app-wrapper dark-mode mode-bg font-body">
+        
+        <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 nav-glass">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                <a href="#" class="font-display text-3xl tracking-wider text-white">FLUX</a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link text-sm text-white/80 hover:text-white tracking-wide">HOME</a> 
+                    <a href="#shop" class="nav-link text-sm text-white/80 hover:text-white tracking-wide">SHOP</a> 
+                    <a href="#about" class="nav-link text-sm text-white/80 hover:text-white tracking-wide">ABOUT</a>
+                </div>
 
-<body class="bg-black text-white font-body">
+                <div class="flex items-center gap-4">
+                    <button onclick="toggleDarkMode()" class="text-white/80 hover:text-flux-gold transition"><i data-lucide="moon"></i></button> 
+                    <button onclick="toggleCart()" class="text-white/80 hover:text-flux-gold transition relative"> 
+                        <i data-lucide="shopping-bag"></i> 
+                        <span id="cart-count" class="badge hidden">0</span> 
+                    </button> 
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-white"><i data-lucide="menu"></i></button>
+                </div>
+            </div>
+        </nav>
 
-<!-- NAVBAR -->
-<nav class="fixed w-full bg-black/90 backdrop-blur z-50 px-6 py-4 flex justify-between items-center">
-  <h1 class="font-display text-3xl">FLUX</h1>
-  <div class="flex gap-6 text-sm">
-    <a href="#">HOME</a>
-    <a href="#shop">SHOP</a>
-  </div>
-</nav>
+        <section id="home" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+            <div class="hero-overlay"></div>
+            <div class="hero-bg"></div>
+            <div class="relative z-20 text-center px-6">
+                <h1 class="font-display text-7xl md:text-9xl text-white tracking-wider fade-up">FLUX LUXURY</h1>
+                <p class="text-white/70 text-lg md:text-xl mt-4 font-light fade-up-delay">Global aesthetics for the bold.</p>
+                <div class="mt-8 fade-up-delay2">
+                    <a href="#shop" class="btn-primary">SHOP NOW</a>
+                </div>
+            </div>
+        </section>
 
-<!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center px-6">
-  <h1 class="font-display text-6xl md:text-8xl">DEFINE YOUR STYLE</h1>
-  <p class="opacity-60 mt-4">Premium fashion for bold individuals</p>
-  <button onclick="scrollToShop()" class="mt-6 px-6 py-3 bg-yellow-500 text-black font-bold">SHOP NOW</button>
-</section>
+        <section id="shop" class="w-full py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                    <h2 class="font-display text-5xl tracking-wider">OUR CATALOG</h2>
+                    <div class="flex gap-2">
+                        <button onclick="filterProducts('all')" class="filter-btn active">ALL</button>
+                        <button onclick="filterProducts('streetwear')" class="filter-btn">STREETWEAR</button>
+                        <button onclick="filterProducts('luxury')" class="filter-btn">LUXURY</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="shop-grid"></div>
+            </div>
+        </section>
 
-<!-- SHOP -->
-<section id="shop" class="py-20 px-6">
-  <h2 class="text-4xl font-display mb-8 text-center">SHOP</h2>
-  <div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
-</section>
+        <div id="cart-overlay" class="overlay hidden" onclick="toggleCart()"></div>
+        <div id="cart-panel" class="side-panel">
+            <div class="p-6 border-b border-white/10 flex justify-between items-center">
+                <h3 class="font-display text-2xl tracking-wider">YOUR BAG</h3>
+                <button onclick="toggleCart()"><i data-lucide="x"></i></button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6"></div>
+            <div class="p-6 border-t border-white/10">
+                <div class="flex justify-between mb-4">
+                    <span class="opacity-60">Subtotal</span>
+                    <span id="cart-total" class="font-display text-2xl text-flux-gold">$0.00</span>
+                </div>
+                <button onclick="checkout()" class="btn-primary w-full">CHECKOUT</button>
+            </div>
+        </div>
 
-<!-- CART -->
-<div id="cart" class="fixed right-0 top-0 w-80 h-full bg-gray-900 p-6 hidden">
-  <h2 class="text-2xl mb-4">Cart</h2>
-  <div id="cart-items"></div>
-  <p class="mt-4">Total: $<span id="total">0</span></p>
-  <button onclick="checkout()" class="mt-4 w-full bg-yellow-500 py-2 text-black">Checkout</button>
-</div>
+        <div id="toast" class="toast">Added to bag</div>
 
-<button onclick="toggleCart()" class="fixed bottom-6 right-6 bg-yellow-500 w-14 h-14 rounded-full text-black">🛒</button>
+    </div>
 
-<!-- JS -->
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
