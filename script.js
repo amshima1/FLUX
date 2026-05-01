@@ -1,89 +1,86 @@
-let products = JSON.parse(localStorage.getItem("products")) || [
-  {
-    id:1,
-    name:"Luxury Red Dress",
-    price:120,
-    img:"https://images.unsplash.com/photo-1520975922284-9c3b7f2f6c2a?auto=format&fit=crop&w=500&q=80",
-    category:"dress"
-  }
+const products = [
+  { id: 1, name: "Oversized Tee", price: 49 },
+  { id: 2, name: "Luxury Hoodie", price: 89 },
+  { id: 3, name: "Street Jacket", price: 149 },
 ];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
 
-/* DISPLAY */
-function display(list){
-  let box = document.getElementById("product-list");
-  box.innerHTML = "";
+// Render products
+function renderProducts() {
+  const container = document.getElementById("products");
 
-  list.forEach(p=>{
-    box.innerHTML += `
-      <div class="card" onclick="openProduct(${p.id})">
-        <img src="${p.img}">
-        <h3>${p.name}</h3>
-        <p>$${p.price}</p>
-        <button onclick="event.stopPropagation(); add(${p.id})">Add</button>
-      </div>
-    `;
+  container.innerHTML = products.map(p => `
+    <div class="bg-gray-800 p-6 rounded">
+      <h3 class="text-xl">${p.name}</h3>
+      <p class="text-yellow-500">$${p.price}</p>
+      <button onclick="addToCart(${p.id})" class="mt-4 bg-yellow-500 px-4 py-2 text-black">Add</button>
+    </div>
+  `).join("");
+}
+
+// Add to cart
+function addToCart(id) {
+  const item = cart.find(c => c.id === id);
+  if (item) item.qty++;
+  else cart.push({ id, qty: 1 });
+
+  updateCart();
+}
+
+// Update cart
+function updateCart() {
+  const container = document.getElementById("cart-items");
+
+  container.innerHTML = cart.map(c => {
+    const p = products.find(pr => pr.id === c.id);
+    return `<div>${p.name} x${c.qty}</div>`;
+  }).join("");
+
+  const total = cart.reduce((sum, c) => {
+    const p = products.find(pr => pr.id === c.id);
+    return sum + p.price * c.qty;
+  }, 0);
+
+  document.getElementById("total").textContent = total;
+}
+
+// Toggle cart
+function toggleCart() {
+  const cartEl = document.getElementById("cart");
+  cartEl.classList.toggle("hidden");
+}
+
+// Scroll
+function scrollToShop() {
+  document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+}
+
+// Stripe Checkout
+async function checkout() {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  const formattedCart = cart.map(c => {
+    const p = products.find(pr => pr.id === c.id);
+    return {
+      name: p.name,
+      price: p.price,
+      qty: c.qty
+    };
   });
-}
-display(products);
 
-/* ADD CART */
-function add(id){
-  let item = products.find(p=>p.id===id);
-  cart.push(item);
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+  const res = await fetch("http://localhost:5000/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cart: formattedCart })
+  });
 
-/* PRODUCT VIEW */
-function openProduct(id){
-  let p = products.find(x=>x.id===id);
-
-  document.getElementById("product-view").innerHTML = `
-    <img src="${p.img}" style="width:100%">
-    <h2>${p.name}</h2>
-    <h3>$${p.price}</h3>
-    <button onclick="add(${p.id})">Add to Cart</button>
-  `;
-
-  document.getElementById("product-modal").style.display="block";
+  const data = await res.json();
+  window.location.href = data.url;
 }
 
-function closeProduct(){
-  document.getElementById("product-modal").style.display="none";
-}
-
-/* ADMIN */
-function openAdmin(){
-  document.getElementById("admin-modal").style.display="block";
-}
-
-function closeAdmin(){
-  document.getElementById("admin-modal").style.display="none";
-}
-
-function addProduct(){
-  let newP = {
-    id: Date.now(),
-    name: name.value,
-    price: price.value,
-    img: img.value,
-    category:"dress"
-  };
-
-  products.push(newP);
-  localStorage.setItem("products", JSON.stringify(products));
-  display(products);
-  closeAdmin();
-}
-
-/* MENU */
-function toggleMenu(){
-  document.getElementById("nav-menu").classList.toggle("active");
-}
-
-/* FILTER */
-function filter(cat){
-  if(cat==="all") return display(products);
-  display(products.filter(p=>p.category===cat));
-}
+// Init
+renderProducts();
