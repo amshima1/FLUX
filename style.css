@@ -1,106 +1,19 @@
 body {
-  margin: 0;
-  font-family: Arial Black;
-  background: #0b0b0b;
-  color: white;
+  font-family: 'Outfit', sans-serif;
 }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px;
-  background: black;
-  border-bottom: 2px solid gold;
-  align-items: center;
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
 }
 
-.logo {
-  color: gold;
-  font-size: 20px;
+button {
+  transition: all 0.3s ease;
 }
 
-/* NAV */
-nav button {
-  background: gold;
-  border: none;
-  margin: 5px;
-  padding: 8px;
+button:hover {
+  transform: scale(1.05);
 }
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px;
-  background: url('https://images.unsplash.com/photo-1520975869018-6b6b3b4a4f7c?auto=format&fit=crop&w=1400&q=80') center/cover;
-}
-
-/* PRODUCTS */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
-  gap: 15px;
-  padding: 20px;
-}
-
-.card {
-  background: #111;
-  border: 2px solid gold;
-  text-align: center;
-  padding: 10px;
-}
-
-.card img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border: 2px solid gold;
-}
-
-.card button {
-  background: gold;
-  border: none;
-  padding: 8px;
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-}
-
-.modal-content {
-  background: black;
-  margin: 10% auto;
-  width: 320px;
-  padding: 20px;
-  border: 2px solid gold;
-}
-
-.large {
-  width: 70%;
-}
-
-.close {
-  float: right;
-  color: gold;
-}
-
-/* MOBILE MENU */
-@media(max-width:768px){
-  nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    width: 100%;
-    background: black;
-  }
-
-  nav.active {
-    display: flex;
-  }
+#cart {
+  transition: all 0.3s ease;
 }
