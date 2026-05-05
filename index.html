@@ -1,51 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLUX Fashion House</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLUX Collection</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="menu" onclick="toggleMenu()">☰</div>
   <div class="logo">FLUX</div>
   <div class="cart">🛒</div>
 </header>
 
-<!-- NAV -->
 <nav id="nav">
-  <a href="#">Home</a>
-  <a href="#">Shop</a>
-  <a href="#">Custom</a>
-  <a href="#">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="collection.html">Collection</a>
 </nav>
 
-<!-- SEARCH -->
-<section class="search-section">
-  <div class="search-bar">
-    <input type="text" placeholder="Search premium fashion...">
-    <span>🔍</span>
+<section class="collection">
+
+  <div class="collection-header">
+    <h1>FLUX COLLECTION</h1>
+    <p>Redefine Street & Luxury Wear</p>
   </div>
-</section>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Redefine Your Style</h1>
-  <p>Luxury fashion for bold individuals</p>
-  <button>Shop Now</button>
-</section>
-
-<!-- PRODUCTS -->
-<section class="products">
-  <h2>Featured Collection</h2>
+  <div class="filters">
+    <button class="active">All</button>
+    <button>Hoodies</button>
+    <button>Jackets</button>
+    <button>Tees</button>
+  </div>
 
   <div class="grid">
 
@@ -65,45 +54,14 @@
 
     <div class="card">
       <img src="https://via.placeholder.com/400">
-      <h3>Casual Tee</h3>
+      <h3>Minimal Tee</h3>
       <p class="price">$15</p>
       <button>Order</button>
     </div>
 
   </div>
+
 </section>
-
-<!-- CUSTOM -->
-<section class="custom">
-  <h2>Custom Design Service</h2>
-  <p>Bring your fashion ideas to life with FLUX.</p>
-  <button>Start Custom Order</button>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <p>© 2026 FLUX Fashion House</p>
-
-  <div class="socials">
-
-    <a href="#">
-      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2z"/></svg>
-    </a>
-
-    <a href="#">
-      <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.2L6.4 22H3l7.3-8.4L1 2h6.3l4.4 5.6L18.9 2z"/></svg>
-    </a>
-
-    <a href="#">
-      <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
-    </a>
-
-    <a href="#">
-      <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3.5 19.7L2 22l2.4-.6A11 11 0 1 0 20.5 3.5z"/></svg>
-    </a>
-
-  </div>
-</footer>
 
 <script src="script.js"></script>
 </body>
