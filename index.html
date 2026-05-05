@@ -1,144 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLUX Fashion House</title>
-  <link rel="stylesheet" href="style.css">
- </head>
- <body>
-  <div id="app" class="app-wrapper dark-mode mode-bg font-body">
-   <nav id="navbar" class="navbar">
-    <div class="nav-container">
-     <a href="#" class="brand-logo" id="brand-logo">FLUX</a>
-     <div class="nav-links">
-      <a href="#home" class="nav-link">HOME</a> 
-      <a href="#shop" class="nav-link">SHOP</a> 
-      <a href="#about" class="nav-link">ABOUT</a> 
-      <a href="#contact" class="nav-link">CONTACT</a>
-     </div>
-     <div class="nav-actions">
-      <button onclick="toggleDarkMode()" class="btn-icon">🌙</button> 
-      <button onclick="toggleWishlist()" class="btn-icon relative"> 
-        ❤️ <span id="wishlist-count" class="badge hidden">0</span> 
-      </button> 
-      <button onclick="toggleCart()" class="btn-icon relative"> 
-        🛍️ <span id="cart-count" class="badge hidden">0</span> 
-      </button> 
-      <button id="hamburger" onclick="toggleMobileMenu()" class="hamburger"> 
-        <span></span><span></span><span></span> 
-      </button>
-     </div>
-    </div>
-    <div id="mobile-menu" class="mobile-menu mode-surface">
-      <a href="#home" onclick="closeMobileMenu()">HOME</a> 
-      <a href="#shop" onclick="closeMobileMenu()">SHOP</a> 
-      <a href="#about" onclick="closeMobileMenu()">ABOUT</a> 
-      <a href="#contact" onclick="closeMobileMenu()">CONTACT</a>
-    </div>
-   </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUX | Fashion House</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-   <section id="home" class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-     <h1 id="hero-title" class="fade-up">FLUX – DEFINE YOUR STYLE</h1>
-     <p id="hero-subtitle" class="fade-up-delay">Premium fashion for bold individuals</p>
-     <div class="hero-btns fade-up-delay2">
-      <a href="#shop" class="btn-primary">SHOP NOW</a> 
-      <a href="#collection" class="btn-outline">VIEW COLLECTION</a>
-     </div>
+    <div class="side-menu" id="sideMenu">
+        <i class="fa-solid fa-xmark close-menu" id="closeBtn"></i>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Shop</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
     </div>
-   </section>
 
-   <section id="collection" class="section">
-    <div class="container">
-     <h2 class="section-title">FEATURED COLLECTION</h2>
-     <div class="grid" id="featured-grid"></div>
-    </div>
-   </section>
+    <header id="mainHeader">
+        <div class="top-nav">
+            <i class="fa-solid fa-bars hamburger" id="menuBtn"></i>
+            <h1 class="logo">FLUX</h1>
+            <div class="header-icons">
+                <i class="fa-solid fa-heart wishlist-icon"></i>
+                <i class="fa-solid fa-bag-shopping cart"></i>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search Collection...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </header>
 
-   <section id="about" class="section">
-    <div class="container flex-row">
-     <div class="about-visual">
-      <div class="visual-box mode-surface">
-        <div class="visual-letter">F</div>
-        <div class="visual-line"></div>
-      </div>
-      <div class="visual-border"></div>
-     </div>
-     <div class="about-content">
-      <h2 class="section-title left">ABOUT FLUX</h2>
-      <p id="about-text">FLUX is a modern fashion house built for creators, trendsetters, and bold thinkers. We blend luxury aesthetics with streetwear edge to create pieces that speak volumes.</p>
-      <div class="stats">
-       <div class="stat-item"><span class="stat-num">500+</span><p>Products</p></div>
-       <div class="stat-item"><span class="stat-num">12K</span><p>Customers</p></div>
-       <div class="stat-item"><span class="stat-num">98%</span><p>Satisfaction</p></div>
-      </div>
-     </div>
-    </div>
-   </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h2>DEFINE YOUR STYLE</h2>
+            <p>Premium fashion for bold individuals</p>
+            <div class="hero-btns">
+                <a href="#" class="btn-primary">Shop Now</a>
+                <a href="#" class="btn-outline">View Collection</a>
+            </div>
+        </div>
+    </section>
 
-   <section class="section">
-    <div class="container">
-     <div class="flex-between">
-      <h2 class="section-title left">NEW ARRIVALS</h2>
-      <div class="slider-controls">
-       <button onclick="scrollSlider(-1)" class="btn-square">←</button> 
-       <button onclick="scrollSlider(1)" class="btn-square">→</button>
-      </div>
-     </div>
-     <div id="arrivals-slider" class="slider-track"></div>
-    </div>
-   </section>
+    <section class="featured">
+        <h3>Featured Collection</h3>
+        <div class="grid">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </section>
 
-   <section id="shop" class="section">
-    <div class="container">
-     <h2 class="section-title">SHOP ALL</h2>
-     <div class="shop-header">
-      <div class="filter-group">
-       <button onclick="filterProducts('all')" class="filter-btn active">ALL</button> 
-       <button onclick="filterProducts('streetwear')" class="filter-btn">STREETWEAR</button> 
-       <button onclick="filterProducts('luxury')" class="filter-btn">LUXURY</button> 
-       <button onclick="filterProducts('accessories')" class="filter-btn">ACCESSORIES</button>
-      </div>
-      <div class="search-wrap">
-       <input type="text" id="search-input" oninput="searchProducts()" placeholder="Search products...">
-      </div>
-     </div>
-     <div class="grid" id="shop-grid"></div>
-    </div>
-   </section>
+    <a href="https://wa.me/yournumber" class="whatsapp-btn">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-   <footer id="contact" class="footer">
-    <div class="container grid-4">
-     <div><h3 class="footer-logo">FLUX</h3><p>Modern fashion for the bold and fearless.</p></div>
-     <div><h4>SHOP</h4><a href="#">New Arrivals</a><a href="#">Streetwear</a><a href="#">Luxury</a></div>
-     <div><h4>COMPANY</h4><a href="#">About Us</a><a href="#">Careers</a><a href="#">Contact</a></div>
-     <div><h4>FOLLOW US</h4><div class="social-flex"><span>IG</span><span>TW</span><span>FB</span></div></div>
-    </div>
-   </footer>
-
-   <div id="cart-overlay" class="overlay hidden" onclick="toggleCart()"></div>
-   <div id="cart-panel" class="side-panel mode-surface">
-    <div class="panel-header"><h3>YOUR CART</h3><button onclick="toggleCart()">✕</button></div>
-    <div id="cart-items" class="panel-body"></div>
-    <div class="panel-footer">
-     <div class="flex-between"><span>Total</span><span id="cart-total" class="gold-text">₦0</span></div>
-     <button onclick="checkout()" class="btn-primary w-full">CHECKOUT</button>
-    </div>
-   </div>
-
-   <div id="product-modal" class="modal hidden">
-    <div class="modal-bg" onclick="closeProductModal()"></div>
-    <div class="modal-content mode-surface">
-     <button onclick="closeProductModal()" class="close-modal">✕</button>
-     <div id="product-detail"></div>
-    </div>
-   </div>
-   
-   <button id="back-to-top" onclick="document.getElementById('app').scrollTo({top:0,behavior:'smooth'})" class="back-to-top">↑</button>
-   <div id="toast" class="toast"></div>
-  </div>
-  <script src="script.js"></script>
- </body>
+    <script src="script.js"></script>
+</body>
 </html>
