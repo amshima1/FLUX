@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FLUX Fashion House</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <!-- HEADER -->
@@ -19,7 +20,7 @@
   <div class="cart">🛒</div>
 </header>
 
-<!-- MOBILE NAV -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#">Home</a>
   <a href="#">Shop</a>
@@ -28,42 +29,44 @@
 </nav>
 
 <!-- SEARCH -->
-<div class="search-bar">
-  <input type="text" placeholder="Search for products...">
-  <span>🔍</span>
-</div>
+<section class="search-section">
+  <div class="search-bar">
+    <input type="text" placeholder="Search premium fashion...">
+    <span>🔍</span>
+  </div>
+</section>
 
 <!-- HERO -->
 <section class="hero">
   <h1>Redefine Your Style</h1>
-  <p>Premium Fashion for Bold Individuals</p>
+  <p>Luxury fashion for bold individuals</p>
   <button>Shop Now</button>
 </section>
 
 <!-- PRODUCTS -->
 <section class="products">
-  <h2>Featured Products</h2>
+  <h2>Featured Collection</h2>
 
-  <div class="product-grid">
+  <div class="grid">
 
-    <div class="product">
-      <img src="https://via.placeholder.com/300">
+    <div class="card">
+      <img src="https://via.placeholder.com/400">
       <h3>Street Hoodie</h3>
-      <p>$25</p>
+      <p class="price">$25</p>
       <button>Order</button>
     </div>
 
-    <div class="product">
-      <img src="https://via.placeholder.com/300">
+    <div class="card">
+      <img src="https://via.placeholder.com/400">
       <h3>Luxury Jacket</h3>
-      <p>$50</p>
+      <p class="price">$50</p>
       <button>Order</button>
     </div>
 
-    <div class="product">
-      <img src="https://via.placeholder.com/300">
+    <div class="card">
+      <img src="https://via.placeholder.com/400">
       <h3>Casual Tee</h3>
-      <p>$15</p>
+      <p class="price">$15</p>
       <button>Order</button>
     </div>
 
@@ -72,14 +75,34 @@
 
 <!-- CUSTOM -->
 <section class="custom">
-  <h2>Custom Design</h2>
-  <p>Send us your design ideas and we’ll bring them to life.</p>
+  <h2>Custom Design Service</h2>
+  <p>Bring your fashion ideas to life with FLUX.</p>
   <button>Start Custom Order</button>
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="footer">
   <p>© 2026 FLUX Fashion House</p>
+
+  <div class="socials">
+
+    <a href="#">
+      <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2z"/></svg>
+    </a>
+
+    <a href="#">
+      <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.2l-4.9-6.2L6.4 22H3l7.3-8.4L1 2h6.3l4.4 5.6L18.9 2z"/></svg>
+    </a>
+
+    <a href="#">
+      <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+    </a>
+
+    <a href="#">
+      <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3.5 19.7L2 22l2.4-.6A11 11 0 1 0 20.5 3.5z"/></svg>
+    </a>
+
+  </div>
 </footer>
 
 <script src="script.js"></script>
