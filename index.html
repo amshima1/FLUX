@@ -1,64 +1,245 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FLUX | Fashion House</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* 1. GLOBAL RESET & LUXURY TYPOGRAPHY */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none !important; /* Kills the purple/blue underlines */
+    list-style: none;
+}
 
-    <div class="side-menu" id="sideMenu">
-        <i class="fa-solid fa-xmark close-menu" id="closeBtn"></i>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Shop</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </div>
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray: #1a1a1a;
+    --border: #333333;
+}
 
-    <header id="mainHeader">
-        <div class="top-nav">
-            <i class="fa-solid fa-bars hamburger" id="menuBtn"></i>
-            <h1 class="logo">FLUX</h1>
-            <div class="header-icons">
-                <i class="fa-solid fa-heart wishlist-icon"></i>
-                <i class="fa-solid fa-bag-shopping cart"></i>
-            </div>
-        </div>
-        
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search Collection...">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-    </header>
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>DEFINE YOUR STYLE</h2>
-            <p>Premium fashion for bold individuals</p>
-            <div class="hero-btns">
-                <a href="#" class="btn-primary">Shop Now</a>
-                <a href="#" class="btn-outline">View Collection</a>
-            </div>
-        </div>
-    </section>
+/* 2. HEADER REARRANGEMENT */
+header {
+    background-color: var(--black);
+    padding: 1.5rem 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--gray);
+}
 
-    <section class="featured">
-        <h3>Featured Collection</h3>
-        <div class="grid">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
-    </section>
+/* Row 1: Left (Menu), Center (Logo), Right (Icons) */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
-    <a href="https://wa.me/yournumber" class="whatsapp-btn">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+.nav-left, .nav-right {
+    flex: 1; /* These ensure the center stays perfectly centered */
+    display: flex;
+    align-items: center;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.nav-right {
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 1.6rem;
+    letter-spacing: 12px;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.hamburger, .wishlist-icon, .cart {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    color: var(--white);
+}
+
+.hamburger:hover, .cart:hover {
+    opacity: 0.6;
+}
+
+/* Row 2: Centered Search Bar */
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    max-width: 450px; /* Limits width on desktop for elegance */
+    padding: 8px 0;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    width: 100%;
+    outline: none;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.search-bar i {
+    font-size: 0.9rem;
+    color: var(--white);
+    padding-left: 10px;
+}
+
+/* 3. HERO SECTION OVERHAUL */
+.hero {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), var(--black);
+    padding: 0 10%;
+}
+
+.hero-content h2 {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 200;
+    letter-spacing: 6px;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+/* Fixing the Hero Buttons */
+.hero-btns {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.hero-btns a {
+    padding: 14px 35px;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    transition: 0.4s;
+    border-radius: 0; /* Keeps it sharp and modern */
+}
+
+.shop-btn {
+    background-color: var(--white);
+    color: var(--black) !important;
+}
+
+.coll-btn {
+    border: 1px solid var(--white);
+    color: var(--white) !important;
+}
+
+.shop-btn:hover {
+    background-color: #cccccc;
+}
+
+.coll-btn:hover {
+    background-color: var(--white);
+    color: var(--black) !important;
+}
+
+/* 4. SIDE MENU (DRAWER) */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: var(--black);
+    z-index: 2000;
+    padding: 4rem 2rem;
+    transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    border-right: 1px solid var(--gray);
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.side-menu nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.side-menu nav a {
+    color: var(--white);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.close-menu {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* 5. WHATSAPP FLOATING BUTTON */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: white !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+}
+
+/* 6. RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 1.2rem;
+        letter-spacing: 6px;
+    }
+    
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .side-menu {
+        width: 100%; /* Full screen menu on mobile */
+    }
+}
