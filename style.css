@@ -14,14 +14,11 @@ body {
   padding: 0 24px;
   background: #0f0f0f;
   color: white;
-  position: sticky;
-  top: 0;
 }
 
 .logo {
   font-family: "Playfair Display", serif;
   font-size: 26px;
-  letter-spacing: 2px;
 }
 
 .menu, .cart {
@@ -43,7 +40,7 @@ nav a {
 }
 
 /* SEARCH */
-.search-section {
+.search-wrapper {
   padding: 20px;
 }
 
@@ -52,14 +49,7 @@ nav a {
   align-items: center;
   background: white;
   border-radius: 40px;
-  padding: 12px 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.search-bar input {
-  border: none;
-  outline: none;
-  flex: 1;
+  padding: 12px;
 }
 
 /* HERO */
@@ -79,21 +69,15 @@ nav a {
   padding: 14px 30px;
   background: #d4af37;
   border: none;
-  cursor: pointer;
   margin-top: 20px;
 }
 
-/* PRODUCTS */
-.products {
-  padding: 100px 20px;
-  text-align: center;
-}
-
+/* GRID + CARDS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
-  margin-top: 40px;
+  padding: 40px;
 }
 
 .card {
@@ -115,68 +99,56 @@ nav a {
 
 .price {
   color: #d4af37;
-  font-weight: bold;
 }
 
-.card button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: #111;
-  color: white;
-  border: none;
-}
-
-/* CUSTOM */
-.custom {
-  text-align: center;
+/* COLLECTION */
+.collection {
   padding: 100px 20px;
-  background: #f7f7f7;
+  text-align: center;
 }
 
-.custom button {
-  padding: 14px 30px;
+.collection-header h1 {
+  font-family: "Playfair Display", serif;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.filters button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.filters .active {
   background: #111;
   color: white;
-  border: none;
 }
 
 /* FOOTER */
 .footer {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px;
   background: #0f0f0f;
   color: white;
 }
 
 .socials {
-  margin-top: 15px;
   display: flex;
   justify-content: center;
-  gap: 18px;
-}
-
-.socials a {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 50%;
-  transition: 0.3s;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .socials svg {
   width: 18px;
   height: 18px;
   fill: white;
-}
-
-.socials a:hover {
-  background: #d4af37;
-  transform: translateY(-3px);
-}
-
-.socials a:hover svg {
-  fill: black;
 }
