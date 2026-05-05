@@ -1,217 +1,144 @@
-:root {
-    --black: #000000;
-    --white: #ffffff;
-    --dark-gray: #111111;
-    --light-gray: #f4f4f4;
-    --accent: #25d366; 
-}
-
-body, html {
+/* Resetting the mess */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background-color: var(--white);
-    color: var(--black);
-    overflow-x: hidden;
+    box-sizing: border-box;
+    text-decoration: none; /* Removes the blue underlines */
+    list-style: none;
 }
 
-/* --- Header & Nav --- */
+body {
+    background: #fff;
+    font-family: 'Inter', sans-serif;
+    color: #000;
+}
+
+/* Luxury Header */
 header {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 1rem 5%;
+    background: #000;
+    color: #fff;
+    padding: 15px 5%;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    transition: all 0.3s ease;
+    z-index: 100;
 }
 
 .top-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 1rem;
+    height: 50px;
 }
 
 .logo {
-    font-size: 1.8rem;
-    letter-spacing: 10px;
+    font-size: 24px;
+    letter-spacing: 8px;
     font-weight: 300;
-    margin: 0;
+    margin-left: 40px; /* Counter-balance for icons */
 }
 
-.hamburger, .cart {
-    font-size: 1.2rem;
+.header-icons i {
+    margin-left: 15px;
+    font-size: 18px;
     cursor: pointer;
 }
 
-/* --- Search Bar --- */
-.search-container {
-    position: relative;
-    border-bottom: 1px solid #333;
+/* Search Bar below Nav */
+.search-bar {
     display: flex;
     align-items: center;
-    padding: 0.5rem 0;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+    margin-top: 10px;
 }
 
-.search-container input {
+.search-bar input {
     background: transparent;
     border: none;
-    color: var(--white);
+    color: #fff;
     width: 100%;
-    padding: 5px 0;
-    font-size: 0.8rem;
     outline: none;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
-.search-icon {
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-/* --- Side Menu --- */
+/* Side Menu Overlay */
 .side-menu {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 280px;
+    width: 100%;
     height: 100%;
-    background: var(--black);
-    z-index: 2000;
-    transition: 0.4s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-    padding: 2rem;
-    box-sizing: border-box;
+    background: #000;
+    z-index: 999;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.side-menu.active {
-    left: 0;
-}
+.side-menu.active { left: 0; }
 
-.side-menu ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 3rem;
-}
-
-.side-menu ul li { margin: 1.5rem 0; }
-
-.side-menu ul li a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 1rem;
+.side-menu nav a {
+    color: #fff;
+    font-size: 2rem;
+    margin: 15px 0;
+    display: block;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 }
 
-.close-menu {
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    float: right;
-}
-
-/* --- Content Sections (No Images) --- */
+/* Hero Section */
 .hero {
     height: 80vh;
-    background-color: var(--dark-gray);
-    background: linear-gradient(135deg, #000 0%, #222 100%);
+    background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
     text-align: center;
+    color: #fff;
 }
 
 .hero-content h2 {
-    font-size: clamp(1.5rem, 8vw, 3rem);
-    font-weight: 200;
+    font-size: 2.5rem;
     letter-spacing: 5px;
+    margin-bottom: 10px;
 }
 
-.hero-content button {
-    background: transparent;
-    border: 1px solid var(--white);
-    color: var(--white);
-    padding: 0.8rem 2rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 1rem;
+.hero-btns {
+    margin-top: 30px;
 }
 
-.collections {
-    padding: 5rem 5%;
-    text-align: center;
+.btn-primary {
+    background: #fff;
+    color: #000;
+    padding: 12px 25px;
+    margin: 5px;
+    display: inline-block;
 }
 
-.collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+.btn-outline {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 12px 25px;
+    margin: 5px;
+    display: inline-block;
 }
 
-.item {
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    color: var(--black);
-    background-color: var(--light-gray);
-    transition: 0.3s;
-    cursor: pointer;
-    border: 1px solid #eee;
-}
-
-/* Different gradients for items to differentiate sections */
-.item-1 { background: linear-gradient(to bottom, #f9f9f9, #e9e9e9); }
-.item-2 { background: linear-gradient(to bottom, #f3f3f3, #d3d3d3); }
-.item-3 { background: linear-gradient(to bottom, #eeeeee, #cccccc); }
-
-.item:hover {
-    background: var(--black);
-    color: var(--white);
-}
-
-/* --- Footer --- */
-footer {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 4rem 5% 2rem;
-    text-align: center;
-}
-
-.social-icons a {
-    color: var(--white);
-    font-size: 1.2rem;
-    margin: 0 10px;
-}
-
-.copyright {
-    margin-top: 3rem;
-    font-size: 0.65rem;
-    opacity: 0.4;
-    letter-spacing: 1px;
-}
-
-/* --- WhatsApp Float --- */
-.whatsapp-float {
+/* Floating WhatsApp */
+.whatsapp-btn {
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: var(--accent);
-    color: white;
-    width: 55px;
-    height: 55px;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 28px;
+    align-items: center;
+    color: #fff;
+    font-size: 30px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
 }
