@@ -1,22 +1,27 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #fff;
+  font-family: "Poppins", sans-serif;
+  background: #fafafa;
+  color: #111;
 }
 
 /* HEADER */
 .header {
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background: #000;
+  padding: 0 24px;
+  background: #0f0f0f;
   color: white;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  letter-spacing: 2px;
 }
 
 .menu, .cart {
@@ -28,24 +33,27 @@ body {
 nav {
   display: none;
   flex-direction: column;
-  background: black;
+  background: #0f0f0f;
 }
 
 nav a {
+  padding: 14px;
   color: white;
-  padding: 12px;
   text-decoration: none;
 }
 
 /* SEARCH */
+.search-section {
+  padding: 20px;
+}
+
 .search-bar {
   display: flex;
   align-items: center;
-  width: 90%;
-  margin: 20px auto;
-  border: 1px solid #ddd;
-  border-radius: 30px;
-  padding: 10px 15px;
+  background: white;
+  border-radius: 40px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .search-bar input {
@@ -57,59 +65,63 @@ nav a {
 /* HERO */
 .hero {
   text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(to right, black, #333);
+  padding: 120px 20px;
+  background: #111;
   color: white;
 }
 
 .hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-}
-
-.hero p {
-  margin: 20px 0;
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
 }
 
 .hero button {
-  padding: 12px 25px;
-  background: #FFD700;
+  padding: 14px 30px;
+  background: #d4af37;
   border: none;
   cursor: pointer;
+  margin-top: 20px;
 }
 
 /* PRODUCTS */
 .products {
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
 }
 
-.product-grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 30px;
   margin-top: 40px;
 }
 
-.product {
-  padding: 20px;
-  border-radius: 10px;
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   transition: 0.3s;
 }
 
-.product:hover {
-  transform: scale(1.05);
+.card:hover {
+  transform: translateY(-8px);
 }
 
-.product img {
+.card img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-.product button {
+.price {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.card button {
   margin-top: 10px;
-  padding: 10px;
-  background: black;
+  padding: 10px 20px;
+  background: #111;
   color: white;
   border: none;
 }
@@ -117,21 +129,54 @@ nav a {
 /* CUSTOM */
 .custom {
   text-align: center;
-  padding: 80px 20px;
-  background: #f5f5f5;
+  padding: 100px 20px;
+  background: #f7f7f7;
 }
 
 .custom button {
-  padding: 12px 25px;
-  background: black;
+  padding: 14px 30px;
+  background: #111;
   color: white;
   border: none;
 }
 
 /* FOOTER */
-footer {
+.footer {
   text-align: center;
-  padding: 20px;
-  background: black;
+  padding: 40px 20px;
+  background: #0f0f0f;
   color: white;
+}
+
+.socials {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.socials a {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.socials svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+
+.socials a:hover {
+  background: #d4af37;
+  transform: translateY(-3px);
+}
+
+.socials a:hover svg {
+  fill: black;
 }
