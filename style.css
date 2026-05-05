@@ -1,45 +1,115 @@
-/* General Layout */
-html, body { height: 100%; margin: 0; scroll-behavior: smooth; }
-.app-wrapper { height: 100%; overflow-y: auto; overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-/* Themes */
-:root { --flux-gold: #C9A96E; }
-.dark-mode { --bg: #0B0B0B; --text: #FFFFFF; --surface: #1a1a1a; }
-.light-mode { --bg: #FFFFFF; --text: #0B0B0B; --surface: #F5F0EB; }
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: black;
+  color: white;
+}
 
-.mode-bg { background-color: var(--bg); color: var(--text); transition: all 0.4s; }
-.mode-surface { background-color: var(--surface); }
+nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
 
-/* Navigation */
-.nav-glass { background: rgba(11,11,11,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.05); }
-.nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--flux-gold); transition: 0.3s; }
-.nav-link:hover::after { width: 100%; }
+.menu {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
 
-/* Hero */
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, #0B0B0B); z-index: 10; }
-.hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80') center/cover; }
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(to right, black, #333);
+  color: white;
+}
 
-/* Components */
-.btn-primary { background: var(--flux-gold); color: black; padding: 0.75rem 2rem; font-weight: 700; letter-spacing: 0.1em; transition: 0.3s; display: inline-block; }
-.btn-primary:hover { background: white; }
+.hero button {
+  padding: 12px 25px;
+  background: gold;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
-.badge { position: absolute; -top: 4px; -right: 4px; width: 1rem; height: 1rem; background: var(--flux-gold); color: black; font-size: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+.products {
+  padding: 50px 20px;
+  text-align: center;
+}
 
-/* Cart & Panels */
-.side-panel { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: var(--surface); z-index: 70; transform: translateX(100%); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-.side-panel.open { transform: translateX(0); }
-.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 60; }
+.product {
+  display: inline-block;
+  margin: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: 0.3s;
+}
 
-/* Product Cards */
-.product-card:hover .quick-view { opacity: 1; transform: translateY(0); }
-.quick-view { opacity: 0; transform: translateY(10px); transition: 0.3s; }
+.product:hover {
+  transform: scale(1.05);
+}
 
-/* Animations */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.fade-up { animation: fadeUp 0.8s forwards; }
-.fade-up-delay { animation: fadeUp 0.8s 0.2s forwards; opacity: 0; }
-.fade-up-delay2 { animation: fadeUp 0.8s 0.4s forwards; opacity: 0; }
+.product img {
+  width: 250px;
+  border-radius: 10px;
+}
 
-.toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--flux-gold); color: black; padding: 1rem 2rem; border-radius: 4px; font-weight: bold; transform: translateY(200%); transition: 0.4s; z-index: 100; }
-.toast.show { transform: translateY(0); }
+.product button {
+  margin-top: 10px;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.custom {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f4f4f4;
+}
+
+.custom button {
+  padding: 12px 25px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: black;
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background: black;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav a {
+    padding: 10px;
+    display: block;
+  }
+
+  .menu {
+    display: block;
+  }
+}
