@@ -3,536 +3,202 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLUX Fashion</title>
+  <title>Glow Beauty Studio</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
-  <script>
-tailwind.config={theme:{extend:{colors:{flux:{black:'#0a0a0a',dark:'#141414',card:'#1a1a1a',accent:'#e4ff1a',muted:'#888',light:'#f0f0f0'}},fontFamily:{heading:['Playfair Display','serif'],body:['Outfit','sans-serif']}}}}
-</script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <style>
-html,body{height:100%;margin:0;font-family:'Outfit',sans-serif;background:#0a0a0a;color:#f0f0f0}
-*{scrollbar-width:thin;scrollbar-color:#333 #0a0a0a}
-.app-root{height:100%;overflow-y:auto;overflow-x:hidden}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
-@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(228,255,26,0.15)}50%{box-shadow:0 0 40px rgba(228,255,26,0.3)}}
-.fade-up{animation:fadeUp .6s ease both}
-.fade-up-d1{animation:fadeUp .6s ease .1s both}
-.fade-up-d2{animation:fadeUp .6s ease .2s both}
-.fade-up-d3{animation:fadeUp .6s ease .3s both}
-.fade-up-d4{animation:fadeUp .6s ease .4s both}
-.slide-in{animation:slideIn .3s ease both}
-.glow{animation:pulse-glow 3s ease infinite}
-.product-card:hover .card-img{transform:scale(1.08)}
-.card-img{transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
-.btn-accent{background:#e4ff1a;color:#0a0a0a;font-weight:600;transition:all .2s}
-.btn-accent:hover{background:#d4ef0a;transform:translateY(-1px)}
-.tab-active{border-bottom:2px solid #e4ff1a;color:#e4ff1a}
-.overlay{background:rgba(0,0,0,.6);backdrop-filter:blur(8px)}
-.toast-msg{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 24px;border-radius:8px;font-size:14px;font-weight:500;opacity:0;transition:opacity .3s}
-.toast-msg.show{opacity:1}
-</style>
+    .font-heading { font-family: 'Cormorant Garamond', serif; }
+    .font-body { font-family: 'Jost', sans-serif; }
+    .gold-gradient { background: linear-gradient(135deg, #c9a96e, #f0d89d, #c9a96e); }
+    .hero-bg { background: linear-gradient(160deg, #fff5f7 0%, #fff0f3 40%, #fef3e2 100%); }
+    .fade-in { animation: fadeIn 0.8s ease forwards; opacity: 0; }
+    .fade-in-delay-1 { animation-delay: 0.2s; }
+    .fade-in-delay-2 { animation-delay: 0.4s; }
+    .fade-in-delay-3 { animation-delay: 0.6s; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+    .fade-in { transform: translateY(20px); }
+  </style>
   <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full">
-  <div class="app-root" id="app"><!-- Toast -->
-   <div id="toast" class="toast-msg bg-flux-accent text-flux-black"></div><!-- NAV -->
-   <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 bg-flux-black/90 backdrop-blur-md border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"><button onclick="navigateTo('home')" class="font-heading text-2xl font-bold tracking-wider" id="nav-brand">FLUX</button>
-     <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide"><button onclick="navigateTo('home')" class="hover:text-flux-accent transition">Home</button> <button onclick="navigateTo('shop')" class="hover:text-flux-accent transition">Shop</button> <button onclick="navigateTo('shop','streetwear')" class="hover:text-flux-accent transition">Streetwear</button> <button onclick="navigateTo('shop','luxury')" class="hover:text-flux-accent transition">Luxury</button> <button onclick="navigateTo('shop','accessories')" class="hover:text-flux-accent transition">Accessories</button>
+ <body class="h-full font-body">
+  <div id="app" class="w-full h-full overflow-auto bg-white"><!-- Hero -->
+   <section class="hero-bg min-h-[600px] flex items-center justify-center px-6 py-20 relative overflow-hidden">
+    <div class="absolute top-10 right-10 w-64 h-64 rounded-full bg-pink-100 opacity-40 blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-48 h-48 rounded-full bg-yellow-100 opacity-50 blur-2xl"></div>
+    <div class="text-center relative z-10 fade-in">
+     <div class="inline-block mb-4">
+      <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto"><circle cx="30" cy="30" r="28" fill="none" stroke="#c9a96e" stroke-width="1.5" /> <path d="M30 15 C25 20, 20 28, 20 33 C20 40, 24 45, 30 45 C36 45, 40 40, 40 33 C40 28, 35 20, 30 15Z" fill="none" stroke="#c9a96e" stroke-width="1.5" /> <circle cx="30" cy="33" r="4" fill="#c9a96e" opacity="0.4" />
+      </svg>
      </div>
-     <div class="flex items-center gap-3"><button onclick="toggleSearch()" class="p-2 hover:text-flux-accent transition"><i data-lucide="search" class="w-5 h-5"></i></button> <button onclick="navigateTo('wishlist')" class="p-2 hover:text-flux-accent transition relative"><i data-lucide="heart" class="w-5 h-5"></i><span id="wish-count" class="absolute -top-1 -right-1 w-4 h-4 bg-flux-accent text-flux-black text-[10px] font-bold rounded-full flex items-center justify-center hidden">0</span></button> <button onclick="openCart()" class="p-2 hover:text-flux-accent transition relative"><i data-lucide="shopping-bag" class="w-5 h-5"></i><span id="cart-count" class="absolute -top-1 -right-1 w-4 h-4 bg-flux-accent text-flux-black text-[10px] font-bold rounded-full flex items-center justify-center hidden">0</span></button> <button onclick="navigateTo('admin')" class="p-2 hover:text-flux-accent transition" title="Admin"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></button> <button onclick="toggleMobileMenu()" class="md:hidden p-2"><i data-lucide="menu" class="w-5 h-5"></i></button>
-     </div>
+     <h1 id="hero-title" class="font-heading text-5xl md:text-7xl font-600 text-gray-800 mb-4">Glow Beauty Studio</h1>
+     <p id="hero-tagline" class="text-lg md:text-xl text-gray-500 font-light tracking-wide mb-8">Enhancing Your Natural Beauty</p><a href="#contact" id="hero-btn" class="inline-block px-8 py-3 gold-gradient text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">Book Appointment</a>
     </div>
-   </nav><!-- Mobile Menu -->
-   <div id="mobile-menu" class="fixed inset-0 z-50 overlay hidden">
-    <div class="bg-flux-dark w-72 h-full p-6 slide-in">
-     <div class="flex justify-between items-center mb-8"><span class="font-heading text-xl font-bold">FLUX</span> <button onclick="toggleMobileMenu()"><i data-lucide="x" class="w-6 h-6"></i></button>
-     </div>
-     <div class="flex flex-col gap-4 text-lg"><button onclick="navigateTo('home');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Home</button> <button onclick="navigateTo('shop');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Shop All</button> <button onclick="navigateTo('shop','streetwear');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Streetwear</button> <button onclick="navigateTo('shop','luxury');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Luxury</button> <button onclick="navigateTo('shop','accessories');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Accessories</button> <button onclick="navigateTo('wishlist');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Wishlist</button> <button onclick="navigateTo('admin');toggleMobileMenu()" class="text-left hover:text-flux-accent transition">Admin</button>
-     </div>
-    </div>
-   </div><!-- Search Bar -->
-   <div id="search-bar" class="fixed top-16 left-0 right-0 z-40 bg-flux-dark border-b border-white/5 hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3"><input id="search-input" type="text" placeholder="Search products..." class="w-full bg-flux-card border border-white/10 rounded-lg px-4 py-3 text-flux-light placeholder-flux-muted focus:outline-none focus:border-flux-accent/50" oninput="handleSearch(this.value)">
-    </div>
-   </div><!-- Cart Drawer -->
-   <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
-    <div class="absolute inset-0 overlay" onclick="closeCart()"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-flux-dark slide-in overflow-y-auto">
-     <div class="p-6">
-      <div class="flex justify-between items-center mb-6">
-       <h2 class="font-heading text-2xl font-bold">Your Bag</h2><button onclick="closeCart()"><i data-lucide="x" class="w-6 h-6"></i></button>
-      </div>
-      <div id="cart-items"></div>
-      <div id="cart-footer" class="hidden border-t border-white/10 pt-4 mt-4">
-       <div class="flex justify-between text-lg font-semibold mb-4"><span>Total</span><span id="cart-total">$0</span>
-       </div><button onclick="navigateTo('checkout');closeCart()" class="btn-accent w-full py-3 rounded-lg text-center">Checkout</button>
+   </section><!-- About -->
+   <section class="py-20 px-6 max-w-4xl mx-auto fade-in fade-in-delay-1">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+     <div class="w-full md:w-1/2">
+      <div class="w-full h-72 rounded-2xl bg-gradient-to-br from-pink-100 to-rose-50 flex items-center justify-center relative overflow-hidden">
+       <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 50%, #c9a96e 0%, transparent 50%);"></div>
+       <svg width="120" height="120" viewbox="0 0 120 120" class="opacity-60"><ellipse cx="60" cy="55" rx="30" ry="40" fill="none" stroke="#c9a96e" stroke-width="1" /> <circle cx="60" cy="42" r="12" fill="none" stroke="#c9a96e" stroke-width="1" /> <path d="M40 85 Q60 100 80 85" fill="none" stroke="#c9a96e" stroke-width="1" />
+       </svg>
       </div>
      </div>
+     <div class="w-full md:w-1/2">
+      <h2 class="font-heading text-3xl md:text-4xl text-gray-800 mb-4">About Us</h2>
+      <div class="w-12 h-0.5 gold-gradient mb-6"></div>
+      <p id="about-text" class="text-gray-500 leading-relaxed">We provide professional beauty services including makeup, skincare, and spa treatments.</p>
+     </div>
     </div>
-   </div><!-- PAGES -->
-   <main id="page-container" class="pt-16"></main>
+   </section><!-- Services -->
+   <section class="py-20 px-6 bg-gradient-to-b from-white to-pink-50/30">
+    <div class="max-w-5xl mx-auto">
+     <h2 class="font-heading text-3xl md:text-4xl text-center text-gray-800 mb-2">Our Services</h2>
+     <div class="w-12 h-0.5 gold-gradient mx-auto mb-12"></div>
+     <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow fade-in fade-in-delay-1">
+       <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-pink-50 flex items-center justify-center"><i data-lucide="palette" style="width:28px;height:28px;color:#c9a96e;"></i>
+       </div>
+       <h3 class="font-heading text-xl font-600 text-gray-800 mb-2">Makeup Services</h3>
+       <p class="text-gray-400 text-sm">Professional bridal, editorial &amp; everyday glam looks.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow fade-in fade-in-delay-2">
+       <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-pink-50 flex items-center justify-center"><i data-lucide="droplets" style="width:28px;height:28px;color:#c9a96e;"></i>
+       </div>
+       <h3 class="font-heading text-xl font-600 text-gray-800 mb-2">Skincare Treatment</h3>
+       <p class="text-gray-400 text-sm">Facials, peels &amp; customized skincare routines.</p>
+      </div>
+      <div class="bg-white rounded-2xl p-8 text-center shadow-sm hover:shadow-md transition-shadow fade-in fade-in-delay-3">
+       <div class="w-16 h-16 mx-auto mb-5 rounded-full bg-pink-50 flex items-center justify-center"><i data-lucide="flower-2" style="width:28px;height:28px;color:#c9a96e;"></i>
+       </div>
+       <h3 class="font-heading text-xl font-600 text-gray-800 mb-2">Spa &amp; Relaxation</h3>
+       <p class="text-gray-400 text-sm">Body massage, aromatherapy &amp; total rejuvenation.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials -->
+   <section class="py-20 px-6 max-w-4xl mx-auto">
+    <h2 class="font-heading text-3xl md:text-4xl text-center text-gray-800 mb-2">Client Love</h2>
+    <div class="w-12 h-0.5 gold-gradient mx-auto mb-12"></div>
+    <div class="grid md:grid-cols-2 gap-8">
+     <div class="bg-pink-50/50 rounded-2xl p-8">
+      <div class="flex gap-1 mb-4"><i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i>
+      </div>
+      <p class="text-gray-600 italic mb-4">"Amazing service, I love my look!"</p>
+      <p class="text-sm text-gray-400">— Sarah M.</p>
+     </div>
+     <div class="bg-pink-50/50 rounded-2xl p-8">
+      <div class="flex gap-1 mb-4"><i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i> <i data-lucide="star" style="width:16px;height:16px;color:#c9a96e;fill:#c9a96e;"></i>
+      </div>
+      <p class="text-gray-600 italic mb-4">"Very professional and friendly"</p>
+      <p class="text-sm text-gray-400">— Priya K.</p>
+     </div>
+    </div>
+   </section><!-- Contact -->
+   <section id="contact" class="py-20 px-6 bg-gradient-to-b from-white to-pink-50/40">
+    <div class="max-w-xl mx-auto text-center">
+     <h2 class="font-heading text-3xl md:text-4xl text-gray-800 mb-2">Get In Touch</h2>
+     <div class="w-12 h-0.5 gold-gradient mx-auto mb-8"></div>
+     <div class="space-y-4 mb-8">
+      <p class="flex items-center justify-center gap-3 text-gray-500"><i data-lucide="phone" style="width:18px;height:18px;color:#c9a96e;"></i> <span id="contact-phone">0800 000 0000</span></p>
+      <p class="flex items-center justify-center gap-3 text-gray-500"><i data-lucide="mail" style="width:18px;height:18px;color:#c9a96e;"></i> <span id="contact-email">example@gmail.com</span></p>
+     </div><a href="#" id="contact-btn" class="inline-block px-8 py-3 gold-gradient text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105">Contact Us</a>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-8 px-6 bg-gray-800 text-center">
+    <div class="flex justify-center gap-5 mb-4"><a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" style="width:20px;height:20px;"></i></a> <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="message-circle" style="width:20px;height:20px;"></i></a>
+    </div>
+    <p class="text-gray-400 text-sm">© 2026 Glow Beauty Studio</p>
+   </footer>
   </div>
   <script>
-// === STATE ===
-let currentPage='home', cart=[], wishlist=[], recentlyViewed=[], orders=[], allOrders=[];
-const PRODUCTS=[
-  {id:'p1',name:'Shadow Oversized Tee',price:89,category:'streetwear',sizes:['S','M','L','XL'],desc:'Premium heavyweight cotton with dropped shoulders and raw-edge finish.',rating:4.8,reviews:124,gradient:'from-gray-800 to-gray-900',icon:'shirt'},
-  {id:'p2',name:'Noir Leather Jacket',price:420,category:'luxury',sizes:['S','M','L'],desc:'Hand-stitched Italian lambskin with asymmetric zip closure.',rating:4.9,reviews:87,gradient:'from-zinc-800 to-neutral-900',icon:'shield'},
-  {id:'p3',name:'Phantom Cargo Pants',price:165,category:'streetwear',sizes:['28','30','32','34'],desc:'Technical fabric with articulated knee panels and hidden pockets.',rating:4.7,reviews:203,gradient:'from-stone-800 to-stone-900',icon:'scissors'},
-  {id:'p4',name:'Eclipse Chain Necklace',price:245,category:'accessories',sizes:['One Size'],desc:'18k gold-plated surgical steel with interlocking eclipse motif.',rating:4.6,reviews:56,gradient:'from-amber-900 to-yellow-950',icon:'gem'},
-  {id:'p5',name:'Vortex Hoodie',price:135,category:'streetwear',sizes:['S','M','L','XL'],desc:'French terry with 3D-embossed logo and kangaroo pocket.',rating:4.8,reviews:312,gradient:'from-indigo-900 to-slate-900',icon:'cloud'},
-  {id:'p6',name:'Obsidian Sunglasses',price:195,category:'accessories',sizes:['One Size'],desc:'Acetate frame with polarized lenses and titanium hinges.',rating:4.5,reviews:78,gradient:'from-gray-900 to-black',icon:'eye'},
-  {id:'p7',name:'Silk Drape Shirt',price:310,category:'luxury',sizes:['S','M','L'],desc:'Mulberry silk with fluid drape and mother-of-pearl buttons.',rating:4.9,reviews:45,gradient:'from-rose-950 to-neutral-900',icon:'star'},
-  {id:'p8',name:'Flux Cap',price:65,category:'accessories',sizes:['One Size'],desc:'Structured six-panel with embroidered logo and brass clasp.',rating:4.4,reviews:189,gradient:'from-emerald-950 to-gray-900',icon:'crown'}
-];
+  const defaultConfig = {
+    business_name: 'Glow Beauty Studio',
+    tagline: 'Enhancing Your Natural Beauty',
+    hero_button: 'Book Appointment',
+    about_text: 'We provide professional beauty services including makeup, skincare, and spa treatments.',
+    phone: '0800 000 0000',
+    email: 'example@gmail.com',
+    background_color: '#fff5f7',
+    surface_color: '#ffffff',
+    text_color: '#1f2937',
+    primary_action: '#c9a96e',
+    secondary_action: '#f9a8d4',
+    font_family: 'Cormorant Garamond',
+    font_size: 16
+  };
 
-// === DEFAULT CONFIG ===
-const defaultConfig={
-  brand_name:'FLUX',
-  hero_headline:'Define Your Edge',
-  hero_subtext:'Curated streetwear & luxury fashion for the fearless.',
-  background_color:'#0a0a0a',
-  surface_color:'#1a1a1a',
-  text_color:'#f0f0f0',
-  accent_color:'#e4ff1a',
-  muted_color:'#888888',
-  font_family:'Outfit',
-  font_size:16
-};
+  async function onConfigChange(config) {
+    const c = { ...defaultConfig, ...config };
+    document.getElementById('hero-title').textContent = c.business_name;
+    document.getElementById('hero-tagline').textContent = c.tagline;
+    document.getElementById('hero-btn').textContent = c.hero_button;
+    document.getElementById('about-text').textContent = c.about_text;
+    document.getElementById('contact-phone').textContent = c.phone;
+    document.getElementById('contact-email').textContent = c.email;
 
-// === TOAST ===
-function showToast(msg,type='success'){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.className='toast-msg show '+(type==='error'?'bg-red-500 text-white':'bg-flux-accent text-flux-black');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
+    // Font
+    const font = c.font_family || defaultConfig.font_family;
+    document.querySelectorAll('.font-heading, h1, h2, h3').forEach(el => {
+      el.style.fontFamily = `${font}, serif`;
+    });
 
-// === NAV ===
-function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('hidden')}
-function toggleSearch(){const s=document.getElementById('search-bar');s.classList.toggle('hidden');if(!s.classList.contains('hidden'))document.getElementById('search-input').focus()}
-function handleSearch(q){if(q.length>1){navigateTo('shop',null,q)}else if(currentPage==='shop'){navigateTo('shop')}}
+    // Font size
+    const base = c.font_size || defaultConfig.font_size;
+    document.getElementById('hero-title').style.fontSize = `${base * 3.5}px`;
+    document.getElementById('hero-tagline').style.fontSize = `${base * 1.25}px`;
+    document.getElementById('about-text').style.fontSize = `${base}px`;
 
-// === CART ===
-function openCart(){document.getElementById('cart-drawer').classList.remove('hidden');renderCart()}
-function closeCart(){document.getElementById('cart-drawer').classList.add('hidden')}
-function addToCart(id,size){
-  const ex=cart.find(c=>c.id===id&&c.size===size);
-  if(ex){ex.qty++}else{cart.push({id,size,qty:1})}
-  updateCartBadge();showToast('Added to bag');
-}
-function removeFromCart(idx){cart.splice(idx,1);updateCartBadge();renderCart()}
-function updateCartQty(idx,d){cart[idx].qty+=d;if(cart[idx].qty<1)cart.splice(idx,1);updateCartBadge();renderCart()}
-function updateCartBadge(){
-  const c=cart.reduce((a,b)=>a+b.qty,0),el=document.getElementById('cart-count');
-  if(c>0){el.textContent=c;el.classList.remove('hidden')}else{el.classList.add('hidden')}
-}
-function getCartTotal(){return cart.reduce((a,c)=>{const p=PRODUCTS.find(x=>x.id===c.id);return a+(p?p.price:0)*c.qty},0)}
-function renderCart(){
-  const container=document.getElementById('cart-items'),footer=document.getElementById('cart-footer');
-  if(!cart.length){container.innerHTML='<p class="text-flux-muted text-center py-12">Your bag is empty</p>';footer.classList.add('hidden');return}
-  footer.classList.remove('hidden');
-  document.getElementById('cart-total').textContent='$'+getCartTotal().toLocaleString();
-  container.innerHTML=cart.map((c,i)=>{const p=PRODUCTS.find(x=>x.id===c.id);if(!p)return'';return`
-    <div class="flex gap-4 py-4 border-b border-white/5">
-      <div class="w-16 h-16 rounded-lg bg-gradient-to-br ${p.gradient} flex items-center justify-center shrink-0"><i data-lucide="${p.icon}" class="w-6 h-6 text-white/60"></i></div>
-      <div class="flex-1 min-w-0">
-        <p class="font-medium text-sm truncate">${p.name}</p>
-        <p class="text-xs text-flux-muted">Size: ${c.size}</p>
-        <div class="flex items-center gap-2 mt-1">
-          <button onclick="updateCartQty(${i},-1)" class="w-6 h-6 rounded bg-white/10 flex items-center justify-center text-xs hover:bg-white/20">−</button>
-          <span class="text-sm w-6 text-center">${c.qty}</span>
-          <button onclick="updateCartQty(${i},1)" class="w-6 h-6 rounded bg-white/10 flex items-center justify-center text-xs hover:bg-white/20">+</button>
-        </div>
-      </div>
-      <div class="text-right">
-        <p class="font-semibold text-sm">$${(p.price*c.qty).toLocaleString()}</p>
-        <button onclick="removeFromCart(${i})" class="text-xs text-flux-muted hover:text-red-400 mt-1"><i data-lucide="trash-2" class="w-3.5 h-3.5 inline"></i></button>
-      </div>
-    </div>`}).join('');
-  lucide.createIcons();
-}
+    // Colors
+    document.querySelectorAll('.gold-gradient').forEach(el => {
+      el.style.background = `linear-gradient(135deg, ${c.primary_action}, ${c.primary_action}dd)`;
+    });
+  }
 
-// === WISHLIST ===
-function toggleWishlist(id){
-  const i=wishlist.indexOf(id);
-  if(i>-1){wishlist.splice(i,1);showToast('Removed from wishlist')}else{wishlist.push(id);showToast('Added to wishlist ❤️')}
-  updateWishBadge();
-}
-function updateWishBadge(){
-  const el=document.getElementById('wish-count');
-  if(wishlist.length>0){el.textContent=wishlist.length;el.classList.remove('hidden')}else{el.classList.add('hidden')}
-}
+  function mapToCapabilities(config) {
+    const c = { ...defaultConfig, ...config };
+    return {
+      recolorables: [
+        { get: () => c.background_color, set: v => { c.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+        { get: () => c.surface_color, set: v => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+        { get: () => c.text_color, set: v => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+        { get: () => c.primary_action, set: v => { c.primary_action = v; window.elementSdk.setConfig({ primary_action: v }); } },
+        { get: () => c.secondary_action, set: v => { c.secondary_action = v; window.elementSdk.setConfig({ secondary_action: v }); } }
+      ],
+      borderables: [],
+      fontEditable: {
+        get: () => c.font_family || defaultConfig.font_family,
+        set: v => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+      },
+      fontSizeable: {
+        get: () => c.font_size || defaultConfig.font_size,
+        set: v => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+      }
+    };
+  }
 
-// === RECENTLY VIEWED ===
-function trackView(id){recentlyViewed=recentlyViewed.filter(x=>x!==id);recentlyViewed.unshift(id);if(recentlyViewed.length>6)recentlyViewed.pop()}
+  function mapToEditPanelValues(config) {
+    const c = { ...defaultConfig, ...config };
+    return new Map([
+      ['business_name', c.business_name],
+      ['tagline', c.tagline],
+      ['hero_button', c.hero_button],
+      ['about_text', c.about_text],
+      ['phone', c.phone],
+      ['email', c.email]
+    ]);
+  }
 
-// === NAVIGATION ===
-function navigateTo(page,filter,search){
-  currentPage=page;
-  const container=document.getElementById('page-container');
-  document.getElementById('search-bar').classList.add('hidden');
-  window.scrollTo({top:0,behavior:'instant'});
-
-  if(page==='home') renderHome(container);
-  else if(page==='shop') renderShop(container,filter,search);
-  else if(page==='product') renderProduct(container,filter);
-  else if(page==='wishlist') renderWishlist(container);
-  else if(page==='checkout') renderCheckout(container);
-  else if(page==='admin') renderAdmin(container);
-  else if(page==='order-success') renderOrderSuccess(container);
-
-  lucide.createIcons();
-}
-
-// === HOME ===
-function renderHome(c){
-  const cfg=window.elementSdk?.config||defaultConfig;
-  c.innerHTML=`
-  <section class="relative overflow-hidden" style="min-height:600px">
-    <div class="absolute inset-0 bg-gradient-to-br from-flux-accent/5 via-transparent to-purple-900/10"></div>
-    <div class="absolute top-20 right-10 w-72 h-72 bg-flux-accent/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-10 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 flex items-center" style="min-height:600px">
-      <div class="max-w-2xl">
-        <p class="text-flux-accent font-medium tracking-widest text-sm mb-4 fade-up">NEW SEASON 2025</p>
-        <h1 class="font-heading text-5xl sm:text-7xl font-bold leading-tight mb-6 fade-up-d1" id="hero-headline">${cfg.hero_headline||defaultConfig.hero_headline}</h1>
-        <p class="text-flux-muted text-lg sm:text-xl mb-8 max-w-lg fade-up-d2" id="hero-subtext">${cfg.hero_subtext||defaultConfig.hero_subtext}</p>
-        <div class="flex gap-4 fade-up-d3">
-          <button onclick="navigateTo('shop')" class="btn-accent px-8 py-3 rounded-lg glow">Shop Now</button>
-          <button onclick="navigateTo('shop','luxury')" class="border border-white/20 px-8 py-3 rounded-lg hover:border-flux-accent/50 transition">Luxury Edit</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      ${['streetwear','luxury','accessories'].map((cat,i)=>`
-        <button onclick="navigateTo('shop','${cat}')" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br ${['from-zinc-800 to-zinc-900','from-neutral-800 to-stone-900','from-stone-800 to-neutral-900'][i]} p-8 h-48 flex flex-col justify-end text-left hover:ring-1 hover:ring-flux-accent/30 transition-all fade-up-d${i+1}">
-          <div class="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center"><i data-lucide="${['shirt','gem','watch'][i]}" class="w-5 h-5 text-flux-accent/70"></i></div>
-          <h3 class="font-heading text-2xl font-bold capitalize">${cat}</h3>
-          <p class="text-flux-muted text-sm mt-1">${PRODUCTS.filter(p=>p.category===cat).length} items →</p>
-        </button>`).join('')}
-    </div>
-  </section>
-
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 py-8 pb-16">
-    <div class="flex justify-between items-end mb-8">
-      <div><p class="text-flux-accent text-sm font-medium tracking-widest mb-1">TRENDING</p><h2 class="font-heading text-3xl font-bold">Best Sellers</h2></div>
-      <button onclick="navigateTo('shop')" class="text-flux-muted text-sm hover:text-flux-accent transition">View All →</button>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">${PRODUCTS.slice(0,4).map(p=>productCard(p)).join('')}</div>
-  </section>
-
-  ${recentlyViewed.length?`
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 pb-16">
-    <h2 class="font-heading text-2xl font-bold mb-6">Recently Viewed</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">${recentlyViewed.slice(0,4).map(id=>{const p=PRODUCTS.find(x=>x.id===id);return p?productCard(p):''}).join('')}</div>
-  </section>`:''}
-
-  <footer class="border-t border-white/5 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between gap-8">
-      <div><p class="font-heading text-xl font-bold mb-2" id="footer-brand">${cfg.brand_name||defaultConfig.brand_name}</p><p class="text-flux-muted text-sm max-w-xs">Premium fashion for the bold and fearless. Worldwide shipping.</p></div>
-      <div class="flex gap-12 text-sm text-flux-muted">
-        <div class="flex flex-col gap-2"><button onclick="navigateTo('shop')" class="hover:text-flux-light transition text-left">Shop</button><button onclick="navigateTo('wishlist')" class="hover:text-flux-light transition text-left">Wishlist</button></div>
-        <div class="flex flex-col gap-2"><span>support@flux.co</span><span>Mon–Fri, 9–6 EST</span></div>
-      </div>
-    </div>
-  </footer>`;
-}
-
-function productCard(p){
-  const inWish=wishlist.includes(p.id);
-  return`<div class="product-card group cursor-pointer" onclick="navigateTo('product','${p.id}')">
-    <div class="relative overflow-hidden rounded-xl bg-gradient-to-br ${p.gradient} aspect-square flex items-center justify-center card-img-wrap">
-      <div class="card-img"><i data-lucide="${p.icon}" class="w-12 h-12 text-white/30"></i></div>
-      <button onclick="event.stopPropagation();toggleWishlist('${p.id}')" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 flex items-center justify-center hover:bg-black/60 transition"><i data-lucide="heart" class="w-4 h-4 ${inWish?'text-red-400 fill-red-400':'text-white/60'}"></i></button>
-    </div>
-    <div class="mt-3">
-      <p class="font-medium text-sm truncate">${p.name}</p>
-      <div class="flex justify-between items-center mt-1"><span class="text-flux-accent font-semibold">$${p.price}</span><span class="text-xs text-flux-muted">★ ${p.rating}</span></div>
-    </div>
-  </div>`
-}
-
-// === SHOP ===
-function renderShop(c,filter,search){
-  let prods=PRODUCTS;
-  if(filter)prods=prods.filter(p=>p.category===filter);
-  if(search)prods=prods.filter(p=>p.name.toLowerCase().includes(search.toLowerCase()));
-  const title=filter?filter.charAt(0).toUpperCase()+filter.slice(1):search?`Results for "${search}"`:'All Products';
-  c.innerHTML=`
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-      <div><p class="text-flux-accent text-sm font-medium tracking-widest mb-1">COLLECTION</p><h1 class="font-heading text-4xl font-bold">${title}</h1></div>
-      <div class="flex gap-2 flex-wrap">
-        ${[{l:'All',v:null},{l:'Streetwear',v:'streetwear'},{l:'Luxury',v:'luxury'},{l:'Accessories',v:'accessories'}].map(f=>
-          `<button onclick="navigateTo('shop',${f.v?"'"+f.v+"'":"null"})" class="px-4 py-2 rounded-full text-sm border transition ${filter===f.v||(!filter&&!f.v)?'border-flux-accent text-flux-accent':'border-white/10 text-flux-muted hover:border-white/30'}">${f.l}</button>`
-        ).join('')}
-      </div>
-    </div>
-    ${prods.length?`<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">${prods.map(p=>productCard(p)).join('')}</div>`
-    :`<div class="text-center py-20 text-flux-muted"><i data-lucide="search-x" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>No products found</p></div>`}
-  </div>`;
-}
-
-// === PRODUCT DETAIL ===
-function renderProduct(c,id){
-  const p=PRODUCTS.find(x=>x.id===id);if(!p){navigateTo('shop');return}
-  trackView(id);
-  c.innerHTML=`
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <button onclick="history.back?navigateTo('shop'):null" class="text-flux-muted text-sm hover:text-flux-light transition mb-6 inline-flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-    <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-      <div class="aspect-square rounded-2xl bg-gradient-to-br ${p.gradient} flex items-center justify-center"><i data-lucide="${p.icon}" class="w-24 h-24 text-white/20"></i></div>
-      <div>
-        <p class="text-flux-accent text-sm font-medium tracking-widest mb-2 capitalize">${p.category}</p>
-        <h1 class="font-heading text-3xl sm:text-4xl font-bold mb-2">${p.name}</h1>
-        <div class="flex items-center gap-3 mb-4"><span class="text-flux-accent text-2xl font-bold">$${p.price}</span><span class="text-flux-muted text-sm">★ ${p.rating} (${p.reviews} reviews)</span></div>
-        <p class="text-flux-muted leading-relaxed mb-6">${p.desc}</p>
-        <div class="mb-6">
-          <p class="text-sm font-medium mb-2">Size</p>
-          <div class="flex gap-2 flex-wrap" id="size-btns">${p.sizes.map((s,i)=>`<button onclick="selectSize('${s}')" class="size-btn px-4 py-2 rounded-lg border text-sm transition ${i===0?'border-flux-accent text-flux-accent':'border-white/10 text-flux-muted hover:border-white/30'}" data-size="${s}">${s}</button>`).join('')}</div>
-        </div>
-        <div class="flex gap-3">
-          <button onclick="addToCart('${p.id}',getSelectedSize())" class="btn-accent flex-1 py-3 rounded-lg flex items-center justify-center gap-2"><i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Bag</button>
-          <button onclick="toggleWishlist('${p.id}');navigateTo('product','${p.id}')" class="w-12 h-12 rounded-lg border border-white/10 flex items-center justify-center hover:border-red-400 transition"><i data-lucide="heart" class="w-5 h-5 ${wishlist.includes(p.id)?'text-red-400 fill-red-400':'text-flux-muted'}"></i></button>
-        </div>
-        <div class="mt-8 grid grid-cols-3 gap-4 text-center">
-          ${[['truck','Free Shipping','Over $100'],['shield-check','Secure','Payment'],['refresh-cw','Easy','Returns']].map(([ico,t1,t2])=>`
-            <div class="p-3 rounded-lg bg-flux-card"><i data-lucide="${ico}" class="w-5 h-5 mx-auto mb-1 text-flux-accent/70"></i><p class="text-xs font-medium">${t1}</p><p class="text-[10px] text-flux-muted">${t2}</p></div>`).join('')}
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-function selectSize(s){document.querySelectorAll('.size-btn').forEach(b=>{b.className=b.className.replace(/border-flux-accent text-flux-accent/g,'border-white/10 text-flux-muted hover:border-white/30');if(b.dataset.size===s)b.className=b.className.replace(/border-white\/10 text-flux-muted hover:border-white\/30/g,'border-flux-accent text-flux-accent')})}
-function getSelectedSize(){const b=document.querySelector('.size-btn.border-flux-accent')||document.querySelector('.size-btn');return b?b.dataset.size:'M'}
-
-// === WISHLIST ===
-function renderWishlist(c){
-  const prods=wishlist.map(id=>PRODUCTS.find(p=>p.id===id)).filter(Boolean);
-  c.innerHTML=`
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <h1 class="font-heading text-4xl font-bold mb-8">Wishlist</h1>
-    ${prods.length?`<div class="grid grid-cols-2 md:grid-cols-4 gap-4">${prods.map(p=>productCard(p)).join('')}</div>`
-    :`<div class="text-center py-20 text-flux-muted"><i data-lucide="heart" class="w-12 h-12 mx-auto mb-4 opacity-50"></i><p>Your wishlist is empty</p><button onclick="navigateTo('shop')" class="btn-accent px-6 py-2 rounded-lg mt-4 text-sm">Explore</button></div>`}
-  </div>`;
-}
-
-// === CHECKOUT ===
-function renderCheckout(c){
-  if(!cart.length){navigateTo('shop');return}
-  const total=getCartTotal();
-  c.innerHTML=`
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-    <h1 class="font-heading text-4xl font-bold mb-8">Checkout</h1>
-    <div class="grid md:grid-cols-5 gap-8">
-      <div class="md:col-span-3">
-        <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-4">
-          <div><label for="co-name" class="block text-sm font-medium mb-1">Full Name</label><input id="co-name" required class="w-full bg-flux-card border border-white/10 rounded-lg px-4 py-3 text-flux-light focus:outline-none focus:border-flux-accent/50" placeholder="Jane Doe"></div>
-          <div><label for="co-email" class="block text-sm font-medium mb-1">Email</label><input id="co-email" type="email" required class="w-full bg-flux-card border border-white/10 rounded-lg px-4 py-3 text-flux-light focus:outline-none focus:border-flux-accent/50" placeholder="jane@example.com"></div>
-          <div><label for="co-addr" class="block text-sm font-medium mb-1">Shipping Address</label><textarea id="co-addr" required rows="3" class="w-full bg-flux-card border border-white/10 rounded-lg px-4 py-3 text-flux-light focus:outline-none focus:border-flux-accent/50 resize-none" placeholder="123 Street, City, Country"></textarea></div>
-          <div class="bg-flux-card rounded-lg p-4 border border-white/5">
-            <p class="text-sm text-flux-muted mb-2">Payment</p>
-            <div class="flex items-center gap-3 p-3 rounded-lg bg-flux-dark border border-white/10">
-              <i data-lucide="credit-card" class="w-5 h-5 text-flux-accent"></i>
-              <div><p class="text-sm font-medium">Secure Payment Demo</p><p class="text-xs text-flux-muted">Stripe integration ready</p></div>
-            </div>
-          </div>
-          <button type="submit" id="checkout-btn" class="btn-accent w-full py-3 rounded-lg flex items-center justify-center gap-2"><i data-lucide="lock" class="w-4 h-4"></i> Place Order — $${total.toLocaleString()}</button>
-        </form>
-      </div>
-      <div class="md:col-span-2">
-        <div class="bg-flux-card rounded-xl p-5 border border-white/5 sticky top-24">
-          <h3 class="font-medium mb-4">Order Summary</h3>
-          ${cart.map(item=>{const p=PRODUCTS.find(x=>x.id===item.id);return p?`<div class="flex justify-between text-sm py-2 border-b border-white/5"><span class="text-flux-muted">${p.name} × ${item.qty}</span><span>$${(p.price*item.qty).toLocaleString()}</span></div>`:''}).join('')}
-          <div class="flex justify-between font-semibold mt-3 pt-2"><span>Total</span><span class="text-flux-accent">$${total.toLocaleString()}</span></div>
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-
-async function handleCheckout(e){
-  e.preventDefault();
-  const btn=document.getElementById('checkout-btn');
-  btn.disabled=true;btn.innerHTML='<span class="animate-spin inline-block w-4 h-4 border-2 border-flux-black border-t-transparent rounded-full"></span> Processing...';
-  const name=document.getElementById('co-name').value;
-  const email=document.getElementById('co-email').value;
-  const addr=document.getElementById('co-addr').value;
-  const total=getCartTotal();
-  const itemsJson=JSON.stringify(cart.map(c=>{const p=PRODUCTS.find(x=>x.id===c.id);return{name:p?.name,size:c.size,qty:c.qty,price:p?.price}}));
-
-  if(allOrders.length>=999){showToast('Order limit reached','error');btn.disabled=false;btn.textContent='Place Order';return}
-
-  const result=await window.dataSdk.create({
-    type:'order',product_id:cart.map(c=>c.id).join(','),quantity:cart.reduce((a,b)=>a+b.qty,0),
-    size:cart.map(c=>c.size).join(','),customer_name:name,customer_email:email,customer_address:addr,
-    total,status:'pending',created_at:new Date().toISOString(),items_json:itemsJson
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange,
+    mapToCapabilities,
+    mapToEditPanelValues
   });
 
-  if(result.isOk){cart=[];updateCartBadge();navigateTo('order-success')}
-  else{showToast('Order failed. Try again.','error');btn.disabled=false;btn.innerHTML='<i data-lucide="lock" class="w-4 h-4"></i> Place Order';lucide.createIcons()}
-}
-
-function renderOrderSuccess(c){
-  c.innerHTML=`
-  <div class="flex items-center justify-center" style="min-height:500px">
-    <div class="text-center max-w-md px-4 fade-up">
-      <div class="w-20 h-20 rounded-full bg-flux-accent/20 flex items-center justify-center mx-auto mb-6"><i data-lucide="check-circle" class="w-10 h-10 text-flux-accent"></i></div>
-      <h1 class="font-heading text-3xl font-bold mb-3">Order Confirmed!</h1>
-      <p class="text-flux-muted mb-6">Thank you for your purchase. You'll receive a confirmation email shortly.</p>
-      <button onclick="navigateTo('home')" class="btn-accent px-8 py-3 rounded-lg">Continue Shopping</button>
-    </div>
-  </div>`;
-}
-
-// === ADMIN ===
-let adminTab='overview';
-function renderAdmin(c){
-  const totalRevenue=allOrders.reduce((a,o)=>a+(o.total||0),0);
-  const totalOrders=allOrders.length;
-  const pendingOrders=allOrders.filter(o=>o.status==='pending').length;
-
-  c.innerHTML=`
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-    <div class="flex items-center gap-3 mb-6">
-      <div class="w-10 h-10 rounded-lg bg-flux-accent/20 flex items-center justify-center"><i data-lucide="layout-dashboard" class="w-5 h-5 text-flux-accent"></i></div>
-      <div><h1 class="font-heading text-2xl font-bold">Admin Dashboard</h1><p class="text-xs text-flux-muted">Demo Mode</p></div>
-    </div>
-
-    <div class="flex gap-1 mb-6 border-b border-white/5 overflow-x-auto">
-      ${['overview','orders','products'].map(t=>`<button onclick="adminTab='${t}';renderAdmin(document.getElementById('page-container'))" class="px-4 py-3 text-sm font-medium whitespace-nowrap transition ${adminTab===t?'tab-active':'text-flux-muted hover:text-flux-light'}">${t.charAt(0).toUpperCase()+t.slice(1)}</button>`).join('')}
-    </div>
-
-    <div id="admin-content">
-    ${adminTab==='overview'?`
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        ${[[`$${totalRevenue.toLocaleString()}`,'Revenue','dollar-sign','from-green-500/20 to-emerald-500/10'],[totalOrders,'Orders','package','from-blue-500/20 to-cyan-500/10'],[pendingOrders,'Pending','clock','from-amber-500/20 to-yellow-500/10'],[PRODUCTS.length,'Products','tag','from-purple-500/20 to-pink-500/10']].map(([val,label,ico,grad])=>`
-          <div class="bg-gradient-to-br ${grad} rounded-xl p-5 border border-white/5">
-            <i data-lucide="${ico}" class="w-5 h-5 text-flux-accent/70 mb-3"></i>
-            <p class="text-2xl font-bold">${val}</p>
-            <p class="text-xs text-flux-muted mt-1">${label}</p>
-          </div>`).join('')}
-      </div>
-      <div class="bg-flux-card rounded-xl border border-white/5 p-5">
-        <h3 class="font-medium mb-4">Recent Orders</h3>
-        ${allOrders.length?`<div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-flux-muted text-left border-b border-white/5"><th class="pb-3 pr-4">Customer</th><th class="pb-3 pr-4">Total</th><th class="pb-3 pr-4">Status</th><th class="pb-3">Date</th></tr></thead><tbody>
-          ${allOrders.slice(0,5).map(o=>`<tr class="border-b border-white/5"><td class="py-3 pr-4">${o.customer_name||'—'}</td><td class="py-3 pr-4 text-flux-accent">$${(o.total||0).toLocaleString()}</td><td class="py-3 pr-4"><span class="px-2 py-0.5 rounded-full text-xs ${o.status==='paid'?'bg-green-500/20 text-green-400':o.status==='shipped'?'bg-blue-500/20 text-blue-400':'bg-amber-500/20 text-amber-400'}">${o.status||'pending'}</span></td><td class="py-3 text-flux-muted">${o.created_at?new Date(o.created_at).toLocaleDateString():''}</td></tr>`).join('')}
-        </tbody></table></div>`:'<p class="text-flux-muted text-sm">No orders yet</p>'}
-      </div>`
-
-    :adminTab==='orders'?`
-      <div class="bg-flux-card rounded-xl border border-white/5 p-5">
-        <h3 class="font-medium mb-4">All Orders (${allOrders.length})</h3>
-        ${allOrders.length?`<div class="space-y-3">${allOrders.map((o,i)=>`
-          <div class="bg-flux-dark rounded-lg p-4 border border-white/5">
-            <div class="flex flex-wrap justify-between gap-2 mb-2">
-              <div><p class="font-medium">${o.customer_name||'Unknown'}</p><p class="text-xs text-flux-muted">${o.customer_email||''}</p></div>
-              <p class="text-flux-accent font-semibold">$${(o.total||0).toLocaleString()}</p>
-            </div>
-            <p class="text-xs text-flux-muted mb-2">${o.customer_address||''}</p>
-            <div class="flex items-center gap-2 flex-wrap">
-              <label for="status-${i}" class="text-xs text-flux-muted">Status:</label>
-              <select id="status-${i}" onchange="updateOrderStatus(${i},this.value)" class="bg-flux-card border border-white/10 rounded px-2 py-1 text-xs text-flux-light focus:outline-none">
-                ${['pending','paid','shipped'].map(s=>`<option value="${s}" ${o.status===s?'selected':''}>${s}</option>`).join('')}
-              </select>
-              <span class="text-xs text-flux-muted ml-auto">${o.created_at?new Date(o.created_at).toLocaleDateString():''}</span>
-            </div>
-          </div>`).join('')}</div>`:'<p class="text-flux-muted text-sm text-center py-8">No orders yet</p>'}
-      </div>`
-
-    :`
-      <div class="bg-flux-card rounded-xl border border-white/5 p-5">
-        <h3 class="font-medium mb-4">Product Catalog</h3>
-        <div class="grid gap-3">${PRODUCTS.map(p=>`
-          <div class="flex items-center gap-4 bg-flux-dark rounded-lg p-3 border border-white/5">
-            <div class="w-12 h-12 rounded-lg bg-gradient-to-br ${p.gradient} flex items-center justify-center shrink-0"><i data-lucide="${p.icon}" class="w-5 h-5 text-white/40"></i></div>
-            <div class="flex-1 min-w-0"><p class="font-medium text-sm truncate">${p.name}</p><p class="text-xs text-flux-muted capitalize">${p.category}</p></div>
-            <p class="text-flux-accent font-semibold text-sm">$${p.price}</p>
-            <span class="text-xs text-flux-muted">${p.sizes.length} sizes</span>
-          </div>`).join('')}</div>
-      </div>`}
-    </div>
-  </div>`;
   lucide.createIcons();
-}
-
-async function updateOrderStatus(idx,status){
-  const order=allOrders[idx];if(!order)return;
-  order.status=status;
-  const result=await window.dataSdk.update({...order,status});
-  if(result.isOk){showToast('Status updated')}else{showToast('Update failed','error')}
-}
-
-// === DATA SDK ===
-const dataHandler={
-  onDataChanged(data){
-    allOrders=data.filter(d=>d.type==='order');
-    // refresh admin if visible
-    if(currentPage==='admin')renderAdmin(document.getElementById('page-container'));
-  }
-};
-
-// === ELEMENT SDK ===
-function applyConfig(cfg){
-  const el=id=>document.getElementById(id);
-  if(el('nav-brand'))el('nav-brand').textContent=cfg.brand_name||defaultConfig.brand_name;
-  if(el('hero-headline'))el('hero-headline').textContent=cfg.hero_headline||defaultConfig.hero_headline;
-  if(el('hero-subtext'))el('hero-subtext').textContent=cfg.hero_subtext||defaultConfig.hero_subtext;
-  if(el('footer-brand'))el('footer-brand').textContent=cfg.brand_name||defaultConfig.brand_name;
-
-  const bg=cfg.background_color||defaultConfig.background_color;
-  const surface=cfg.surface_color||defaultConfig.surface_color;
-  const text=cfg.text_color||defaultConfig.text_color;
-  const accent=cfg.accent_color||defaultConfig.accent_color;
-  const muted=cfg.muted_color||defaultConfig.muted_color;
-  document.documentElement.style.setProperty('--bg',bg);
-  document.body.style.background=bg;
-  document.body.style.color=text;
-
-  const font=cfg.font_family||defaultConfig.font_family;
-  const baseSize=cfg.font_size||defaultConfig.font_size;
-  document.body.style.fontFamily=`${font}, Outfit, sans-serif`;
-  document.body.style.fontSize=baseSize+'px';
-  document.querySelectorAll('.font-heading').forEach(el=>el.style.fontFamily=`${font}, Playfair Display, serif`);
-}
-
-window.elementSdk.init({
-  defaultConfig,
-  onConfigChange:async(cfg)=>applyConfig(cfg),
-  mapToCapabilities:(cfg)=>({
-    recolorables:[
-      {get:()=>cfg.background_color||defaultConfig.background_color,set:v=>{cfg.background_color=v;window.elementSdk.setConfig({background_color:v})}},
-      {get:()=>cfg.surface_color||defaultConfig.surface_color,set:v=>{cfg.surface_color=v;window.elementSdk.setConfig({surface_color:v})}},
-      {get:()=>cfg.text_color||defaultConfig.text_color,set:v=>{cfg.text_color=v;window.elementSdk.setConfig({text_color:v})}},
-      {get:()=>cfg.accent_color||defaultConfig.accent_color,set:v=>{cfg.accent_color=v;window.elementSdk.setConfig({accent_color:v})}},
-      {get:()=>cfg.muted_color||defaultConfig.muted_color,set:v=>{cfg.muted_color=v;window.elementSdk.setConfig({muted_color:v})}}
-    ],
-    borderables:[],
-    fontEditable:{get:()=>cfg.font_family||defaultConfig.font_family,set:v=>{cfg.font_family=v;window.elementSdk.setConfig({font_family:v})}},
-    fontSizeable:{get:()=>cfg.font_size||defaultConfig.font_size,set:v=>{cfg.font_size=v;window.elementSdk.setConfig({font_size:v})}}
-  }),
-  mapToEditPanelValues:(cfg)=>new Map([
-    ['brand_name',cfg.brand_name||defaultConfig.brand_name],
-    ['hero_headline',cfg.hero_headline||defaultConfig.hero_headline],
-    ['hero_subtext',cfg.hero_subtext||defaultConfig.hero_subtext]
-  ])
-});
-
-(async()=>{
-  const r=await window.dataSdk.init(dataHandler);
-  if(!r.isOk)console.error('Data SDK init failed');
-  navigateTo('home');
-  lucide.createIcons();
-})();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f77b41b45946555',t:'MTc3ODA2NzU1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f7815e5109fd094',t:'MTc3ODA3MTU2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
