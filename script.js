@@ -1,7 +1,7 @@
 // ── Navbar scroll effect ──
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
+    if (window.scrollY > 30) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -15,7 +15,6 @@ menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('active');
     navLinks.classList.toggle('open');
 });
-// Close menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
         menuToggle.classList.remove('active');
@@ -23,13 +22,8 @@ navLinks.querySelectorAll('a').forEach(link => {
     });
 });
 
-// ── Scroll-reveal animation (Intersection Observer) ──
+// ── Scroll Reveal Animation ──
 const revealElements = document.querySelectorAll('.reveal');
-const observerOptions = {
-    root: null,
-    rootMargin: '0px 0px -60px 0px',
-    threshold: 0.15,
-};
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -37,10 +31,13 @@ const observer = new IntersectionObserver((entries) => {
             observer.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
 revealElements.forEach(el => observer.observe(el));
 
-// ── Smooth scroll for anchor links (fallback) ──
+// ── Smooth Scroll ──
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const targetId = this.getAttribute('href');
@@ -53,4 +50,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-console.log('🚀 VA DIGIT WORLD — ready for liftoff.');
+console.log('🌈 NovaTech Solutions — colourful, modern, and Fiverr-ready!');
