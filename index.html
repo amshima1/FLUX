@@ -3,27 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VA DIGIT WORLD — Build Smarter, Launch Faster</title>
-    <!-- External CSS -->
+    <title>NovaTech Solutions — Digital Agency & Tech Startup</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <!-- ═══════════ NAVIGATION ═══════════ -->
     <nav class="navbar" id="navbar">
-        <div class="nav-inner">
+        <div class="nav-container">
             <a href="#" class="logo">
-                <span class="logo-dot"></span> VA DIGIT WORLD
+                <div class="logo-icon">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+                        <circle cx="18" cy="18" r="18" fill="url(#logoGradient)"/>
+                        <path d="M11 18L16 23L25 13" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0" y1="0" x2="36" y2="36">
+                                <stop offset="0%" stop-color="#FF6B6B"/>
+                                <stop offset="100%" stop-color="#4ECDC4"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span>NovaTech</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#cta" class="btn-nav">Get Started</a></li>
+                <li><a href="#contact" class="btn-nav">Get Started</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -33,97 +43,219 @@
 
     <!-- ═══════════ HERO ═══════════ -->
     <section class="hero" id="hero">
-        <div class="hero-content reveal">
-            <span class="hero-badge">🚀 Now in Public Beta</span>
-            <h1>Build <span>smarter</span>,<br>launch <span>faster</span>.</h1>
-            <p>
-                VA DIGIT WORLD is the all-in-one platform that helps teams ship products
-                with confidence — from idea to production, without the chaos.
-            </p>
-            <div class="hero-buttons">
-                <a href="#cta" class="btn btn-primary">Start Free Trial</a>
-                <a href="#features" class="btn btn-outline">See How It Works</a>
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-text reveal">
+                <span class="hero-badge">🔥 Trusted by 500+ Companies Worldwide</span>
+                <h1>We Create <span>Digital Magic</span> That Drives Real Growth</h1>
+                <p>From stunning websites to powerful apps — NovaTech delivers colourful, high-performance solutions that make your brand unforgettable.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">🚀 Start a Project</a>
+                    <a href="#services" class="btn btn-outline">Explore Services</a>
+                </div>
+            </div>
+            <div class="hero-visual reveal">
+                <div class="floating-card card-1">💻 Web Apps</div>
+                <div class="floating-card card-2">📱 Mobile Apps</div>
+                <div class="floating-card card-3">🎨 UI/UX Design</div>
+                <div class="main-circle"></div>
             </div>
         </div>
     </section>
 
-    <!-- ═══════════ FEATURES ═══════════ -->
-    <section class="section" id="features">
+    <!-- ═══════════ SERVICES ═══════════ -->
+    <section class="section services" id="services">
         <div class="section-header reveal">
-            <h2>Everything you need to ship</h2>
-            <p>Powerful tools that integrate seamlessly into your workflow.</p>
+            <span class="section-tag">Our Services</span>
+            <h2>What We Do Best</h2>
+            <p>End-to-end digital solutions crafted with creativity and code.</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card reveal">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning-Fast CI/CD</h3>
-                <p>Automated pipelines that build, test, and deploy in seconds — not minutes.</p>
+        <div class="services-grid">
+            <div class="service-card reveal" style="--card-color: #FF6B6B;">
+                <div class="service-icon-wrap">
+                    <span class="service-icon">🌐</span>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites & web apps built with React, Next.js, and modern frameworks for blazing speed.</p>
+                <a href="#" class="service-link">Learn More →</a>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🔍</div>
-                <h3>Smart Code Review</h3>
-                <p>AI-powered reviews catch bugs before they reach production. Ship with peace of mind.</p>
+            <div class="service-card reveal" style="--card-color: #4ECDC4;">
+                <div class="service-icon-wrap">
+                    <span class="service-icon">📱</span>
+                </div>
+                <h3>Mobile Apps</h3>
+                <p>Native & cross-platform apps that deliver seamless experiences on iOS and Android.</p>
+                <a href="#" class="service-link">Learn More →</a>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">📊</div>
-                <h3>Real-Time Analytics</h3>
-                <p>Dashboards that give you instant insight into performance, errors, and user behavior.</p>
+            <div class="service-card reveal" style="--card-color: #FFE66D;">
+                <div class="service-icon-wrap">
+                    <span class="service-icon">🎨</span>
+                </div>
+                <h3>UI/UX Design</h3>
+                <p>User-centric design that combines beauty with functionality to boost engagement.</p>
+                <a href="#" class="service-link">Learn More →</a>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🔒</div>
-                <h3>Enterprise-Grade Security</h3>
-                <p>SOC 2 compliant, end-to-end encrypted, with granular access controls built in.</p>
+            <div class="service-card reveal" style="--card-color: #A786DF;">
+                <div class="service-icon-wrap">
+                    <span class="service-icon">📊</span>
+                </div>
+                <h3>Digital Marketing</h3>
+                <p>Data-driven SEO & marketing strategies to grow your online presence exponentially.</p>
+                <a href="#" class="service-link">Learn More →</a>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">🔄</div>
-                <h3>Seamless Integrations</h3>
-                <p>Connect with 200+ tools: Slack, GitHub, Jira, Figma, and more — no code required.</p>
+        </div>
+    </section>
+
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="section about" id="about">
+        <div class="about-container">
+            <div class="about-text reveal">
+                <span class="section-tag">About Us</span>
+                <h2>Passionate Team,<br>Proven Results</h2>
+                <p>Founded in 2020, NovaTech has grown from a two-person startup to a global team of 45+ designers, developers, and strategists. We've delivered over 200 projects across 15 countries.</p>
+                <div class="stats">
+                    <div class="stat" style="--stat-color: #FF6B6B;">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat" style="--stat-color: #4ECDC4;">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat" style="--stat-color: #FFE66D;">
+                        <span class="stat-number">45+</span>
+                        <span class="stat-label">Team Members</span>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary">Work With Us</a>
             </div>
-            <div class="feature-card reveal">
-                <div class="feature-icon">💬</div>
-                <h3>Team Collaboration</h3>
-                <p>Threaded discussions, shared workspaces, and live editing keep everyone in sync.</p>
+            <div class="about-visual reveal">
+                <div class="about-image-grid">
+                    <div class="about-img-item img-1"></div>
+                    <div class="about-img-item img-2"></div>
+                    <div class="about-img-item img-3"></div>
+                    <div class="about-img-item img-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PORTFOLIO ═══════════ -->
+    <section class="section portfolio" id="portfolio">
+        <div class="section-header reveal">
+            <span class="section-tag">Portfolio</span>
+            <h2>Our Recent Work</h2>
+            <p>Showcasing some of our favourite projects.</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-card reveal" style="--port-color: #FF6B6B;">
+                <div class="port-img">🛒</div>
+                <h3>ShopFlow E-Commerce</h3>
+                <p>Full-stack online store with 50K+ monthly visitors.</p>
+            </div>
+            <div class="portfolio-card reveal" style="--port-color: #4ECDC4;">
+                <div class="port-img">🏥</div>
+                <h3>MediConnect App</h3>
+                <p>Telemedicine platform serving 100K+ patients.</p>
+            </div>
+            <div class="portfolio-card reveal" style="--port-color: #FFE66D;">
+                <div class="port-img">🎓</div>
+                <h3>EduLearn Platform</h3>
+                <p>Online learning portal with 200+ courses.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ PRICING ═══════════ -->
+    <section class="section pricing" id="pricing">
+        <div class="section-header reveal">
+            <span class="section-tag">Pricing</span>
+            <h2>Choose Your Plan</h2>
+            <p>Transparent pricing for every stage of your business.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card reveal" style="--price-color: #FF6B6B;">
+                <h3>Starter</h3>
+                <div class="price">$499<span>/project</span></div>
+                <ul>
+                    <li>✅ 5-Page Website</li>
+                    <li>✅ Basic SEO</li>
+                    <li>✅ Mobile Responsive</li>
+                    <li>✅ 1 Revision</li>
+                    <li>❌ Custom Design</li>
+                </ul>
+                <a href="#" class="btn btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card popular reveal" style="--price-color: #4ECDC4;">
+                <div class="popular-badge">Most Popular</div>
+                <h3>Professional</h3>
+                <div class="price">$1,499<span>/project</span></div>
+                <ul>
+                    <li>✅ 10-Page Website</li>
+                    <li>✅ Advanced SEO</li>
+                    <li>✅ Custom Design</li>
+                    <li>✅ 3 Revisions</li>
+                    <li>✅ Priority Support</li>
+                </ul>
+                <a href="#" class="btn btn-pricing">Get Started</a>
+            </div>
+            <div class="pricing-card reveal" style="--price-color: #A786DF;">
+                <h3>Enterprise</h3>
+                <div class="price">$3,999<span>/project</span></div>
+                <ul>
+                    <li>✅ Unlimited Pages</li>
+                    <li>✅ Full SEO Suite</li>
+                    <li>✅ Custom Web App</li>
+                    <li>✅ Unlimited Revisions</li>
+                    <li>✅ 24/7 Dedicated Support</li>
+                </ul>
+                <a href="#" class="btn btn-pricing">Get Started</a>
             </div>
         </div>
     </section>
 
     <!-- ═══════════ TESTIMONIALS ═══════════ -->
-    <section class="section" id="testimonials" style="background: var(--surface);">
+    <section class="section testimonials" id="testimonials">
         <div class="section-header reveal">
-            <h2>Loved by engineering teams</h2>
-            <p>See what our customers are saying about VA DIGIT WORLD.</p>
+            <span class="section-tag">Testimonials</span>
+            <h2>What Our Clients Say</h2>
+            <p>Real feedback from businesses we've helped grow.</p>
         </div>
         <div class="testimonials-grid">
-            <div class="testimonial-card reveal">
+            <div class="testimonial-card reveal" style="--test-color: #FF6B6B;">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"VA DIGIT WORLD cut our deployment time by 70%. The whole team is happier and more productive."</p>
-                <div class="testimonial-author">
+                <p class="quote">"NovaTech transformed our online store. Sales increased by 150% within 2 months of launch!"</p>
+                <div class="author">
                     <div class="author-avatar">SK</div>
                     <div class="author-info">
                         <strong>Sarah Kim</strong>
-                        <span>VP of Engineering, TrailBlazer</span>
+                        <span>CEO, Bloom Beauty</span>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card reveal">
+            <div class="testimonial-card reveal" style="--test-color: #4ECDC4;">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"The smart code review feature alone has saved us from at least a dozen production incidents."</p>
-                <div class="testimonial-author">
+                <p class="quote">"The team delivered a stunning app that our users love. Professional, creative, and on time."</p>
+                <div class="author">
                     <div class="author-avatar">MR</div>
                     <div class="author-info">
                         <strong>Marcus Rivera</strong>
-                        <span>CTO, PixelForge</span>
+                        <span>CTO, FitTrack</span>
                     </div>
                 </div>
             </div>
-            <div class="testimonial-card reveal">
+            <div class="testimonial-card reveal" style="--test-color: #FFE66D;">
                 <div class="stars">★★★★★</div>
-                <p class="quote">"We evaluated 5 platforms and VA DIGIT WORLD was the clear winner. Onboarding took hours, not weeks."</p>
-                <div class="testimonial-author">
+                <p class="quote">"Best agency we've worked with. Their UI/UX designs are simply breathtaking."</p>
+                <div class="author">
                     <div class="author-avatar">AL</div>
                     <div class="author-info">
                         <strong>Aisha Lee</strong>
-                        <span>Lead DevOps, Nimbus</span>
+                        <span>Founder, EduVibe</span>
                     </div>
                 </div>
             </div>
@@ -131,28 +263,58 @@
     </section>
 
     <!-- ═══════════ CTA ═══════════ -->
-    <section class="cta-section" id="cta">
-        <div class="cta-inner reveal">
-            <h2>Ready to move faster?</h2>
-            <p>Join thousands of teams already building with VA DIGIT WORLD. Free for 14 days, no credit card required.</p>
-            <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Your Free Trial</a>
+    <section class="section cta" id="contact">
+        <div class="cta-container reveal">
+            <span class="cta-emoji">🚀</span>
+            <h2>Ready to Build Something Incredible?</h2>
+            <p>Let's discuss your project. Get a free consultation today — no strings attached.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-cta">Get Free Consultation</a>
+                <a href="#" class="btn btn-cta-outline">View Portfolio</a>
+            </div>
         </div>
     </section>
 
     <!-- ═══════════ FOOTER ═══════════ -->
     <footer>
-        <ul class="footer-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Privacy</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <p class="footer-copy">&copy; 2026 VA DIGIT WORLD. All rights reserved.</p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span>NovaTech</span>
+                </a>
+                <p>Digital solutions for modern businesses. Making the web a more colourful place.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>📧 hello@novatech.com</li>
+                    <li>📞 +1 (555) 000-0000</li>
+                    <li>📍 San Francisco, CA</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 NovaTech Solutions. Made with ❤️ and lots of ☕</p>
+        </div>
     </footer>
 
-    <!-- External JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
