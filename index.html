@@ -1,100 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VA Digit World</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <style>
-        :root { --cyan: #00f0ff; --purple: #a855f7; --green: #39ff14; }
-        body { font-family: 'DM Sans', sans-serif; }
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .glow-cyan { text-shadow: 0 0 20px rgba(0,240,255,0.5); }
-        .glow-border { box-shadow: 0 0 15px rgba(0,240,255,0.3), inset 0 0 15px rgba(0,240,255,0.05); }
-        .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 0 25px rgba(0,240,255,0.3); }
-        @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-        .anim-1 { animation: fadeUp 0.6s 0.1s both; }
-        .anim-2 { animation: fadeUp 0.6s 0.3s both; }
-        .anim-3 { animation: fadeUp 0.6s 0.5s both; }
-        .anim-4 { animation: fadeUp 0.6s 0.7s both; }
-    </style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
- </head>
- <body data-template-id="__page-root" class="min-h-screen text-white"><!-- Header -->
-  <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-[#0D0D11]/80 border-b border-white/5">
-   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-    <h1 data-template-id="nav-logo" class="canva-text font-orbitron font-bold text-xl"></h1>
-    <nav class="hidden md:flex gap-8"><a data-template-id="nav-home" class="canva-link text-sm tracking-widest hover:text-[#00f0ff] transition-colors cursor-pointer"></a> <a data-template-id="nav-services" class="canva-link text-sm tracking-widest hover:text-[#00f0ff] transition-colors cursor-pointer"></a> <a data-template-id="nav-insights" class="canva-link text-sm tracking-widest hover:text-[#00f0ff] transition-colors cursor-pointer"></a> <a data-template-id="nav-resources" class="canva-link text-sm tracking-widest hover:text-[#00f0ff] transition-colors cursor-pointer"></a> <a data-template-id="nav-about" class="canva-link text-sm tracking-widest hover:text-[#00f0ff] transition-colors cursor-pointer"></a>
-    </nav><button data-template-id="nav-cta" class="canva-button px-5 py-2 rounded border border-[#00f0ff] text-sm tracking-wider hover:bg-[#00f0ff] hover:text-black transition-all"></button>
-   </div>
-  </header><!-- Hero -->
-  <section class="relative w-full flex items-center justify-center overflow-hidden" style="min-height: calc(100 * min(var(--vh, 1vh), 1vh));">
-   <div class="absolute inset-0"><img data-template-id="hero-bg-image" class="canva-image w-full h-full object-cover opacity-30" loading="lazy">
-    <div class="absolute inset-0 bg-gradient-to-b from-[#0D0D11] via-transparent to-[#0D0D11]"></div>
-   </div>
-   <div class="relative text-center px-6 max-w-4xl mx-auto">
-    <h2 data-template-id="hero-title" class="canva-text font-orbitron font-black text-5xl md:text-7xl glow-cyan anim-1"></h2>
-    <p data-template-id="hero-tagline" class="canva-text mt-6 text-lg md:text-xl opacity-80 anim-2"></p><button data-template-id="hero-cta" class="canva-button mt-10 px-8 py-3 rounded-full font-semibold tracking-wider text-black transition-all hover:scale-105 anim-3"></button>
-   </div>
-  </section><!-- Services -->
-  <section class="w-full py-24 px-6">
-   <div class="max-w-6xl mx-auto">
-    <h2 data-template-id="services-title" class="canva-text font-orbitron text-center text-3xl font-bold mb-16"></h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-     <div data-template-id="service-1-card" class="canva-card p-6 rounded-xl border border-white/10 text-center card-hover anim-1">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#00f0ff]/10 flex items-center justify-center">
-       <i data-lucide="brain" class="w-7 h-7 text-[#00f0ff]"></i>
-      </div>
-      <h3 data-template-id="service-1-title" class="canva-text font-semibold text-lg"></h3>
-     </div>
-     <div data-template-id="service-2-card" class="canva-card p-6 rounded-xl border border-white/10 text-center card-hover anim-2">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#a855f7]/10 flex items-center justify-center">
-       <i data-lucide="cloud" class="w-7 h-7 text-[#a855f7]"></i>
-      </div>
-      <h3 data-template-id="service-2-title" class="canva-text font-semibold text-lg"></h3>
-     </div>
-     <div data-template-id="service-3-card" class="canva-card p-6 rounded-xl border border-white/10 text-center card-hover anim-3">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#39ff14]/10 flex items-center justify-center">
-       <i data-lucide="shield" class="w-7 h-7 text-[#39ff14]"></i>
-      </div>
-      <h3 data-template-id="service-3-title" class="canva-text font-semibold text-lg"></h3>
-     </div>
-     <div data-template-id="service-4-card" class="canva-card p-6 rounded-xl border border-white/10 text-center card-hover anim-4">
-      <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-[#00f0ff]/10 flex items-center justify-center">
-       <i data-lucide="bar-chart-3" class="w-7 h-7 text-[#00f0ff]"></i>
-      </div>
-      <h3 data-template-id="service-4-title" class="canva-text font-semibold text-lg"></h3>
-     </div>
-    </div>
-   </div>
-  </section><!-- Insights -->
-  <section class="w-full py-24 px-6">
-   <div class="max-w-6xl mx-auto">
-    <h2 data-template-id="insights-title" class="canva-text font-orbitron text-center text-3xl font-bold mb-16"></h2>
-    <div class="grid md:grid-cols-2 gap-8">
-     <div data-template-id="insight-1-card" class="canva-card rounded-xl overflow-hidden border border-white/10 card-hover"><img data-template-id="insight-1-img" class="canva-image w-full h-48 object-cover" loading="lazy">
-      <div class="p-6">
-       <h3 data-template-id="insight-1-heading" class="canva-text font-semibold text-xl mb-3"></h3>
-       <p data-template-id="insight-1-text" class="canva-text opacity-70 text-sm leading-relaxed"></p>
-      </div>
-     </div>
-     <div data-template-id="insight-2-card" class="canva-card rounded-xl overflow-hidden border border-white/10 card-hover"><img data-template-id="insight-2-img" class="canva-image w-full h-48 object-cover" loading="lazy">
-      <div class="p-6">
-       <h3 data-template-id="insight-2-heading" class="canva-text font-semibold text-xl mb-3"></h3>
-       <p data-template-id="insight-2-text" class="canva-text opacity-70 text-sm leading-relaxed"></p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- Footer -->
-  <footer class="w-full border-t border-white/5 py-8 px-6 text-center">
-   <p data-template-id="footer-text" class="canva-text text-sm opacity-50"></p>
-  </footer>
-  <script src="/_sdk/editing_sdk.js"></script>
-  <script>lucide.createIcons();</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fd6e53726f60b09',t:'MTc3OTA2NTcxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VA DIGIT WORLD — Build Smarter, Launch Faster</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ═══════════ NAVIGATION ═══════════ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <span class="logo-dot"></span> VA DIGIT WORLD
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#cta" class="btn-nav">Get Started</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-content reveal">
+            <span class="hero-badge">🚀 Now in Public Beta</span>
+            <h1>Build <span>smarter</span>,<br>launch <span>faster</span>.</h1>
+            <p>
+                VA DIGIT WORLD is the all-in-one platform that helps teams ship products
+                with confidence — from idea to production, without the chaos.
+            </p>
+            <div class="hero-buttons">
+                <a href="#cta" class="btn btn-primary">Start Free Trial</a>
+                <a href="#features" class="btn btn-outline">See How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ FEATURES ═══════════ -->
+    <section class="section" id="features">
+        <div class="section-header reveal">
+            <h2>Everything you need to ship</h2>
+            <p>Powerful tools that integrate seamlessly into your workflow.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning-Fast CI/CD</h3>
+                <p>Automated pipelines that build, test, and deploy in seconds — not minutes.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔍</div>
+                <h3>Smart Code Review</h3>
+                <p>AI-powered reviews catch bugs before they reach production. Ship with peace of mind.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Analytics</h3>
+                <p>Dashboards that give you instant insight into performance, errors, and user behavior.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise-Grade Security</h3>
+                <p>SOC 2 compliant, end-to-end encrypted, with granular access controls built in.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">🔄</div>
+                <h3>Seamless Integrations</h3>
+                <p>Connect with 200+ tools: Slack, GitHub, Jira, Figma, and more — no code required.</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon">💬</div>
+                <h3>Team Collaboration</h3>
+                <p>Threaded discussions, shared workspaces, and live editing keep everyone in sync.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ TESTIMONIALS ═══════════ -->
+    <section class="section" id="testimonials" style="background: var(--surface);">
+        <div class="section-header reveal">
+            <h2>Loved by engineering teams</h2>
+            <p>See what our customers are saying about VA DIGIT WORLD.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"VA DIGIT WORLD cut our deployment time by 70%. The whole team is happier and more productive."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SK</div>
+                    <div class="author-info">
+                        <strong>Sarah Kim</strong>
+                        <span>VP of Engineering, TrailBlazer</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"The smart code review feature alone has saved us from at least a dozen production incidents."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MR</div>
+                    <div class="author-info">
+                        <strong>Marcus Rivera</strong>
+                        <span>CTO, PixelForge</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="stars">★★★★★</div>
+                <p class="quote">"We evaluated 5 platforms and VA DIGIT WORLD was the clear winner. Onboarding took hours, not weeks."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AL</div>
+                    <div class="author-info">
+                        <strong>Aisha Lee</strong>
+                        <span>Lead DevOps, Nimbus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════ CTA ═══════════ -->
+    <section class="cta-section" id="cta">
+        <div class="cta-inner reveal">
+            <h2>Ready to move faster?</h2>
+            <p>Join thousands of teams already building with VA DIGIT WORLD. Free for 14 days, no credit card required.</p>
+            <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer>
+        <ul class="footer-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; 2026 VA DIGIT WORLD. All rights reserved.</p>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
 </html>
